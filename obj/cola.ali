@@ -1,0 +1,98 @@
+V "GNAT Lib v2021"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_DEALLOCATION
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U cola%b		cola.adb		ad9054e1 NE OO PK GE IL
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W text_io%s		text_io.ads		text_io.ali
+W unchecked_deallocation%s
+
+U cola%s		cola.ads		dfc50dd7 BN EE NE OO PK GE IL
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-except.ads		20210520051128 946f3014 ada.exceptions%s
+D a-ioexce.ads		20210520051128 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20210520051130 119b8fb3 ada.streams%s
+D a-string.ads		20210520051130 90ac6797 ada.strings%s
+D a-sttebu.ads		20210520051130 18209c64 ada.strings.text_buffers%s
+D a-stuten.ads		20210520051130 808c40ad ada.strings.utf_encoding%s
+D a-tags.ads		20210520051130 9eaa38c6 ada.tags%s
+D a-textio.ads		20210520051130 aef4d56d ada.text_io%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D cola.ads		20140507143732 dfc50dd7 cola%s
+D cola.adb		20250418032658 72a2870a cola%b
+D interfac.ads		20210520051132 edec285f interfaces%s
+D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
+D system.ads		20210520051136 2ffa5114 system%s
+D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
+D s-exctab.ads		20210520051132 54135002 system.exception_table%s
+D s-ficobl.ads		20210520051132 078245e4 system.file_control_block%s
+D s-parame.ads		20210520051134 4752c4cb system.parameters%s
+D s-putima.ads		20210520051134 4e095881 system.put_images%s
+D s-secsta.ads		20210520051134 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20210520051134 a7318a92 system.soft_links%s
+D s-stache.ads		20210520051134 a37c21ec system.stack_checking%s
+D s-stalib.ads		20210520051134 472fbca8 system.standard_library%s
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
+D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
+D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
+D text_io.ads		20210520051136 21b2c898 text_io%s
+D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
+D unchdeal.ads		20210520051136 214516a4 unchecked_deallocation%s
+G a e
+G c Z s b [cola standard 6 9 none]
+X 11 cola.ads
+3+9 tipoInfo 25r50 37r46 54r16 12|15r49 48r44
+6k9*cola 3z9 51E9 62l5 62e9 12|4b14 74l5 74t9
+9X4*colaLlena 12|28r35
+9X15*colaVacia 12|36r16 51r16
+9X26*operacionNoImplementada
+12R9*tipoCola 19r29 25r33 31r36 37r28 42r32 47r28 57c9 60e14 12|8r27 15r33
+. 32r36 48r27 58r30 69r26
+19U14*crear 19<21 12|8b14 12l8 12t13
+19r21 q{12R9} 12|8b21 10m7 11m7
+25U14*encolar 25=23 25>43 12|15b14 29l8 29t15
+25r23 q{12R9} 12|15b23 21r11 22r10 24m10 26m7
+25*43 i{3+9} 12|15b43 19r18
+31U14*desencolar 31=26 12|32b14 45l8 45t18
+31r26 q{12R9} 12|32b26 35r11 38r16 39m10 39r21 41r14 42m13
+37U14*frente 37>22 37<38 12|48b14 55l8 55t14
+37r22 q{12R9} 12|48b21 50r11 53r14
+37*38 i{3+9} 12|48b37 53m10
+42U14*vaciar 42=22 12|58b14 67l8 67t14
+42r22 q{12R9} 12|58b21 61r14 62r16 63m10 63r21 66m7
+47V13*esVacia{boolean} 47>22 12|69b13 72l8 72t15
+47r22 q{12R9} 12|69b21 71r15
+51R9 tipoNodo 52r28 53c9 56e14 12|6r50 18r17
+52P9 tipoPunt(51R9) 55r15 58r18 59r17 12|6r60 16r12 33r12 59r12
+54*9 info{3+9} 12|19m11 53r23
+55p9 sig{52P9} 12|20m11 22m18 39r30 63r30
+58p9 frente{52P9} 12|10m9 21r13 24m12 35r13 38r18 39m12 39r23 41r16 50r13
+. 53r16 61r16 62r18 63m12 63r23 71r17
+59p9 final{52P9} 12|11m9 22r12 26m9 42m15 66m9
+X 12 cola.adb
+6U14 free[32|20] 40s10 64s10
+16p7 aux{11|52P9} 18m7 19r7 20r7 22r24 24r21 26r16
+33p7 aux{11|52P9} 38m10 40m15 40r15
+59p7 aux{11|52P9} 62m10 64m15 64r15
+X 30 text_io.ads
+24K9*Text_IO=24:29 12|1w6 2r5
+X 32 unchdeal.ads
+20u11*Unchecked_Deallocation 12|1w15 6r26
+

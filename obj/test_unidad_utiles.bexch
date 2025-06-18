@@ -1,0 +1,20 @@
+[GENERATED OBJECT FILE]
+b__test_unidad_utiles.o
+[PROJECT FILES]
+C:\ADA\ADA\Proyectos\ayp2.gpr
+20250318193302 f73a05279fb235e07eb9d987d186eb30
+[BOUND OBJECT FILES]
+C:\ADA\ADA\Proyectos\obj\utiles.o
+C:\ADA\ADA\Proyectos\obj\test_unidad_utiles.o
+[GENERATED SOURCE FILES]
+b__test_unidad_utiles.ads
+b__test_unidad_utiles.adb
+b__test_unidad_utiles.ali
+[RESULTING OPTIONS]
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
+-static
+-static-libgcc
+C:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/libgnat.a
+-Wl,--stack=0x2000000

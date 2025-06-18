@@ -1,0 +1,21 @@
+[GENERATED OBJECT FILE]
+b__test_unidad_arbol.o
+[PROJECT FILES]
+C:\ADA\ADA\Proyectos\ayp2.gpr
+20250426235514 df044717004d0b44a2a98088cd39c8bb
+[BOUND OBJECT FILES]
+C:\ADA\ADA\Proyectos\obj\cola.o
+C:\ADA\ADA\Proyectos\obj\arbol.o
+C:\ADA\ADA\Proyectos\obj\test_unidad_arbol.o
+[GENERATED SOURCE FILES]
+b__test_unidad_arbol.ads
+b__test_unidad_arbol.adb
+b__test_unidad_arbol.ali
+[RESULTING OPTIONS]
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
+-static
+-static-libgcc
+C:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/libgnat.a
+-Wl,--stack=0x2000000

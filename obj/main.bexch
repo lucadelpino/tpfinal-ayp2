@@ -1,0 +1,24 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+C:\ADA\ADA\Proyectos\ayp2.gpr
+20250617203948 8e369d903c57bf7a4c1f8f4d5aac8634
+[BOUND OBJECT FILES]
+C:\ADA\ADA\Proyectos\obj\cola.o
+C:\ADA\ADA\Proyectos\obj\arbol.o
+C:\ADA\ADA\Proyectos\obj\fechas.o
+C:\ADA\ADA\Proyectos\obj\lista.o
+C:\ADA\ADA\Proyectos\obj\utiles.o
+C:\ADA\ADA\Proyectos\obj\main.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
+-static
+-static-libgcc
+C:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/libgnat.a
+-Wl,--stack=0x2000000

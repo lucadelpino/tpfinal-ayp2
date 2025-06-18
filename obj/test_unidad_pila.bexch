@@ -1,0 +1,20 @@
+[GENERATED OBJECT FILE]
+b__test_unidad_pila.o
+[PROJECT FILES]
+C:\ADA\ADA\Proyectos\ayp2.gpr
+20250415153208 42548e8348d5311f03d02b078f9a7da5
+[BOUND OBJECT FILES]
+C:\ADA\ADA\Proyectos\obj\pila.o
+C:\ADA\ADA\Proyectos\obj\test_unidad_pila.o
+[GENERATED SOURCE FILES]
+b__test_unidad_pila.ads
+b__test_unidad_pila.adb
+b__test_unidad_pila.ali
+[RESULTING OPTIONS]
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:\ADA\ADA\Proyectos\obj\
+-LC:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
+-static
+-static-libgcc
+C:/ada/ada/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/libgnat.a
+-Wl,--stack=0x2000000

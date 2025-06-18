@@ -1,0 +1,173 @@
+V "GNAT Lib v2021"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U test_unidad_lista%b	test_unidad_lista.adb	c1951a28 NE OO SU IL
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W lista%s		lista.adb		lista.ali
+Z system%s		system.ads		system.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.exception_table%s  s-exctab.adb	s-exctab.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+W text_io%s		text_io.ads		text_io.ali
+Z unchecked_deallocation%s
+W utiles%s		utiles.adb		utiles.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-except.ads		20210520051128 946f3014 ada.exceptions%s
+D a-ioexce.ads		20210520051128 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20210520051130 119b8fb3 ada.streams%s
+D a-string.ads		20210520051130 90ac6797 ada.strings%s
+D a-sttebu.ads		20210520051130 18209c64 ada.strings.text_buffers%s
+D a-stuten.ads		20210520051130 808c40ad ada.strings.utf_encoding%s
+D a-tags.ads		20210520051130 9eaa38c6 ada.tags%s
+D a-textio.ads		20210520051130 aef4d56d ada.text_io%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20210520051132 edec285f interfaces%s
+D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
+D lista.ads		20200330142626 11f93368 lista%s
+D lista.adb		20250413043620 02dd9b37 lista%b
+D system.ads		20210520051136 2ffa5114 system%s
+D s-conca2.ads		20210520051132 02a0d7d0 system.concat_2%s
+D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
+D s-exctab.ads		20210520051132 54135002 system.exception_table%s
+D s-ficobl.ads		20210520051132 078245e4 system.file_control_block%s
+D s-imagei.ads		20210520051134 0d3f86a7 system.image_i%s
+D s-imgint.ads		20210520051134 bdb6f5ec system.img_int%s
+D s-parame.ads		20210520051134 4752c4cb system.parameters%s
+D s-putima.ads		20210520051134 4e095881 system.put_images%s
+D s-secsta.ads		20210520051134 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20210520051134 a7318a92 system.soft_links%s
+D s-stache.ads		20210520051134 a37c21ec system.stack_checking%s
+D s-stalib.ads		20210520051134 472fbca8 system.standard_library%s
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
+D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
+D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
+D test_unidad_lista.adb	20200330144914 e72bdffb test_unidad_lista%b
+D text_io.ads		20210520051136 21b2c898 text_io%s
+D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
+D unchdeal.ads		20210520051136 214516a4 unchecked_deallocation%s
+D utiles.ads		20250318192850 16f53e23 utiles%s
+G a e
+G c Z b b [test_unidad_lista standard 7 11 none]
+G r i none [test_unidad_lista standard 7 11 none] [lista standard 8 9 none]
+G r c none [test_unidad_lista standard 7 11 none] [continua utiles 11 14 none]
+X 9 a-textio.ads
+506U14*Put_Line 33|26s10 31s13 35s10 41s10 52s26 59s26 65s10 70s13 76s10
+. 87s13 96s13 101s10 109s13 113s10 121s13 125s10 134s10 141s10 151s26 157s10
+. 162s13 167s10 179s10 184s13 189s10 195s10 206s10 211s13 216s10 222s10 231s10
+. 236s13 242s10 247s13 252s10 258s10 267s10 272s13 278s10 283s13 288s10 294s10
+. 302s10 308s10 321s4 328s4 335s4 342s4 349s4 356s4 363s4 370s4 377s4 382s4
+X 13 lista.ads
+8k9*lista 103e10 33|5w6 12r28
+11X4 claveExiste 33|29r15[12]
+12X4 claveNoExiste 33|68r15[12] 94r15[12] 160r15[12] 234r15[12] 270r15[12]
+13X4 claveEsPrimera 33|281r15[12]
+14X4 claveEsUltima 33|245r15[12]
+15X4 listaVacia 33|182r15[12] 209r15[12]
+19R9 tipoLista 33|19r39[12] 45r40[12] 80r39[12] 145r40[12] 172r39[12] 173r11[12]
+. 199r38[12] 200r11[12] 226r38[12] 262r38[12] 298r37[12] 312r7[12]
+24U14 crear 33|177s10[12] 204s10[12] 316s4[12]
+30U14 insertar 33|22s10[12] 25s10[12]
+36U14 modificar 33|49s10[12] 56s10[12] 64s10[12] 156s10[12]
+42U14 suprimir 33|84s10[12] 91s10[12] 92s10[12] 106s10[12] 118s10[12] 131s10[12]
+47V13 longitud{natural} 33|34s11[12] 100s11[12] 112s11[12] 124s11[12] 133s11[12]
+. 301s11[12]
+53U14 recuClave 33|50s18[12] 57s18[12] 149s18[12]
+59U14 recuAnt 33|266s10[12] 277s10[12] 286s7[12]
+65U14 recuSig 33|230s10[12] 241s10[12] 250s7[12]
+71U14 recuPrim 33|130s10[12] 178s10[12] 187s7[12]
+77U14 recuUlt 33|205s10[12] 214s7[12]
+82U14 vaciar 33|300s7[12]
+87V13 esVacia{boolean} 33|129s18[12]
+X 33 test_unidad_lista.adb
+7U11*test_unidad_lista 7b11 383l5 383t22
+9I12 TipoInfo{integer} 12r45
+10I12 TipoClave{integer} 12r34 81r13 174r12 201r11 227r11 263r11
+12K12 mi_lista[13|8] 13r8
+16a4 claves(integer) 21r16 22r21 25r21 25r28 34r24 48r16 49r22 50r31 56r22
+. 57r31 100r25 112r25 124r25 148r16 149r31
+17a4 infos(integer) 22r31 25r42 25r48 49r34 51r30 56r33 58r29 64r27 64r33
+. 150r29 156r27 156r33
+19U14 test_insertar 19b14 19=29 19=50 43l8 43t21 137s7 320s4
+19r29 l{13|19R9[12]} 22m19 25m19 34r20
+19i50 errores{integer} 27m10 27r19 32m13 32r22 36m10 36r19 42m10 42r19
+21i11 i{integer} 22r28 22r37
+45U14 test_modificar 45b14 45=30 45=51 78l8 78t22 327s4
+45r30 l{13|19R9[12]} 49m20 50r28 56m20 57r28 64m20
+45i51 errores{integer} 53m26 53r37 60m26 60r37 66m10 66r19 71m13 71r22 77m10
+. 77r19
+46i7 info{integer} 50m42 51r21 57m42 58r21
+48i11 i{integer} 49r29 49r40 50r38 51r36 56r29 56r39 57r38 58r35
+80U14 test_suprimir 80b14 80=29 80=50 143l8 143t21 334s4
+80r29 l{13|19R9[12]} 84m19 91m19 92m19 100r20 106m19 112r20 118m19 124r20
+. 129r26 130r19 131m19 133r20 137m21
+80i50 errores{integer} 88m13 88r22 97m13 97r22 102m10 102r19 110m13 110r22
+. 114m10 114r19 122m13 122r22 126m10 126r19 135m10 135r19 137m24 142m10 142r19
+81i7 prim{10I12} 130m21 131r21
+145U14 test_recuClave 145b14 145=30 145=51 169l8 169t22 362s4
+145r30 l{13|19R9[12]} 149r28 156m20
+145i51 errores{integer} 152m26 152r37 158m10 158r19 163m13 163r22 168m10
+. 168r19
+146i7 info{integer} 149m42 150r21
+148i11 i{integer} 149r38 150r35
+172U14 test_recuprim 172b14 172=29 172=50 197l8 197t21 341s4
+172r29 l{13|19R9[12]} 187r16
+172i50 errores{integer} 180m10 180r19 185m13 185r22 190m10 190r19 196m10
+. 196r19
+173r7 l2{13|19R9[12]} 177m16 178r19
+174i7 prim{10I12} 178m22 187m18 188r11
+199U14 test_recuUlt 199b14 199=28 199=49 224l8 224t20 348s4
+199r28 l{13|19R9[12]} 214r15
+199i49 errores{integer} 207m10 207r19 212m13 212r22 217m10 217r19 223m10
+. 223r19
+200r7 l2{13|19R9[12]} 204m16 205r18
+201i7 ult{10I12} 205m21 214m17 215r11
+226U14 test_recuSig 226b14 226=28 226=49 260l8 260t20 355s4
+226r28 l{13|19R9[12]} 230r18 241r18 250r15
+226i49 errores{integer} 232m10 232r19 237m13 237r22 243m10 243r19 248m13
+. 248r22 253m10 253r19 259m10 259r19
+227i7 aux{10I12} 230m26 241m24 250m21 251r11
+262U14 test_recuAnt 262b14 262=28 262=49 296l8 296t20 369s4
+262r28 l{13|19R9[12]} 266r18 277r18 286r15
+262i49 errores{integer} 268m10 268r19 273m13 273r22 279m10 279r19 284m13
+. 284r22 289m10 289r19 295m10 295r19
+263i7 aux{10I12} 266m26 277m22 286m19 287r11
+298U14 test_Vaciar 298b14 298=27 298=48 310l8 310t19 376s4
+298r27 l{13|19R9[12]} 300m14 301r20
+298i48 errores{integer} 303m10 303r19 309m10 309r19
+312r4 l{13|19R9[12]} 316m10 320m18 320r18 327m19 327r19 334m18 334r18 341m18
+. 341r18 348m17 348r17 355m17 355r17 362m19 362r19 369m17 369r17 376m16 376r16
+313i4 total{integer} 322m4 322r11 329m4 329r11 336m4 336r11 343m4 343r11
+. 350m4 350r11 357m4 357r11 364m4 364r11 371m4 371r11 378m4 378r11 382r80
+313i10 errores{integer} 320m20 320r20 321r50 322r18 323m4 327m21 327r21 328r51
+. 329r18 330m4 334m20 334r20 335r50 336r18 337m4 341m20 341r20 342r50 343r18
+. 344m4 348m19 348r19 349r49 350r18 351m4 355m19 355r19 356r49 357r18 358m4
+. 362m21 362r21 363r51 364r18 365m4 369m19 369r19 370r49 371r18 372m4 376m18
+. 376r18 377r48 378r18 379m4
+X 34 text_io.ads
+24K9*Text_IO=24:29 33|1w6 2r5
+X 37 utiles.ads
+1K9*utiles 33|1w15 2r14 37|43e11
+11U14*continua 33|317s4
+

@@ -1,0 +1,332 @@
+V "GNAT Lib v2021"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_RECURSION
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U tpfinal%b		tpfinal.adb		c3b8ef52 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+W arbol%s		arbol.adb		arbol.ali
+W cola%s		cola.adb		cola.ali
+W fechas%s		fechas.adb		fechas.ali
+W lista%s		lista.adb		lista.ali
+Z system%s		system.ads		system.ali
+Z system.exception_table%s  s-exctab.adb	s-exctab.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
+Z text_io%s		text_io.ads		text_io.ali
+Z unchecked_deallocation%s
+W utiles%s		utiles.adb		utiles.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-charac.ads		20210520051128 2d3ec45b ada.characters%s
+D a-chlat1.ads		20210520051128 66457d31 ada.characters.latin_1%s
+D a-except.ads		20210520051128 946f3014 ada.exceptions%s
+D a-finali.ads		20210520051128 bf4f806b ada.finalization%s
+D a-flteio.ads		20210520051128 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20210520051128 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20210520051128 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20210520051130 119b8fb3 ada.streams%s
+D a-string.ads		20210520051130 90ac6797 ada.strings%s
+D a-strmap.ads		20210520051130 5a88892a ada.strings.maps%s
+D a-sttebu.ads		20210520051130 18209c64 ada.strings.text_buffers%s
+D a-strunb.ads		20210520051130 03325227 ada.strings.unbounded%s
+D a-suteio.ads		20210520051130 26d8e9aa ada.strings.unbounded.text_io%s
+D a-stuten.ads		20210520051130 808c40ad ada.strings.utf_encoding%s
+D a-tags.ads		20210520051130 9eaa38c6 ada.tags%s
+D a-textio.ads		20210520051130 aef4d56d ada.text_io%s
+D a-tiflio.ads		20210520051130 fcca4daa ada.text_io.float_io%s
+D a-tiinio.ads		20210520051130 390edddb ada.text_io.integer_io%s
+D a-tiunio.ads		20210520051130 759c6b0c ada.text_io.unbounded_io%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D arbol.ads		20140507144144 8e7e6f43 arbol%s
+D arbol.adb		20250505224854 31c15161 arbol%b
+D cola.ads		20140507143732 dfc50dd7 cola%s
+D cola.adb		20250418032658 72a2870a cola%b
+D fechas.ads		20220617230842 1bd0d5eb fechas%s
+D interfac.ads		20210520051132 edec285f interfaces%s
+D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
+D lista.ads		20200330142626 11f93368 lista%s
+D lista.adb		20250413043620 02dd9b37 lista%b
+D system.ads		20210520051136 2ffa5114 system%s
+D s-atocou.ads		20210520051132 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
+D s-exctab.ads		20210520051132 54135002 system.exception_table%s
+D s-ficobl.ads		20210520051132 078245e4 system.file_control_block%s
+D s-finmas.ads		20210520051132 1ab4dba8 system.finalization_masters%s
+D s-finroo.ads		20210520051132 4ff27390 system.finalization_root%s
+D s-memory.ads		20210520051134 597d6634 system.memory%s
+D s-parame.ads		20210520051134 4752c4cb system.parameters%s
+D s-pooglo.ads		20210520051134 ede33ef8 system.pool_global%s
+D s-putima.ads		20210520051134 4e095881 system.put_images%s
+D s-secsta.ads		20210520051134 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20210520051134 a7318a92 system.soft_links%s
+D s-stache.ads		20210520051134 a37c21ec system.stack_checking%s
+D s-stalib.ads		20210520051134 472fbca8 system.standard_library%s
+D s-stalib.adb		20210520051134 977290bf system.standard_library%b
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20210520051134 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20210520051134 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20210520051134 7bdda3fa system.stream_attributes%s
+D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
+D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
+D text_io.ads		20210520051136 21b2c898 text_io%s
+D tpfinal.adb		20250618161826 41447724 tpfinal%b
+D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
+D unchdeal.ads		20210520051136 214516a4 unchecked_deallocation%s
+D utiles.ads		20250318192850 16f53e23 utiles%s
+G a e
+G c Z b b [tpfinal standard 20 11 none]
+G r i none [tpfinal standard 20 11 none] [cola standard 6 9 none]
+G r i none [tpfinal standard 20 11 none] [arbol standard 12 9 none]
+G r i none [tpfinal standard 20 11 none] [lista standard 8 9 none]
+G r c none [tpfinal standard 20 11 none] [enteroenrango utiles 26 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 56|1r6 2r9 3r9 4r9 5r9 12r5 13r9 14r9 15r9 16r9
+X 6 a-flteio.ads
+20K13*Float_Text_IO[18|46] 56|5w13 16r13
+X 7 a-inteio.ads
+18K13*Integer_Text_IO[19|46] 56|4w13 15r13
+X 10 a-string.ads
+16K13*Strings 35e16 56|2r13 13r13
+X 13 a-strunb.ads
+83K21*Unbounded 765e26 56|2w21 13r21
+88R9*Unbounded_String<5|43R9> 744e15 56|40r15 48r27 51r23 52r30 94r15 95r17
+. 97r18 126r29 130r13
+239V14*"="{boolean} 56|61r71 72r70 86r73 137r76
+257V14*"<"{boolean} 56|61r66 72r65 86r68 137r71
+293V14*">"{boolean} 56|61r61 137r66
+X 17 a-textio.ads
+58K13*Text_IO 725e16 56|1w10 3r13 12r9 14r13
+506U14*Put_Line 56|284s7 285s7 286s7 287s7 288s7
+X 20 a-tiunio.ads
+25K21*Unbounded_IO 61e29 56|3w21 14r21
+X 22 arbol.ads
+12k9*arbol 93e10 56|8w9 61r29 111r31 137r30
+14K12 ColaRecorridos[24|6] 56|62r33[61] 112r37[111] 138r35[137]
+21P9 tipoArbol 56|166r50[61] 171r51[61] 176r55[61] 181r48[61] 186r52[61]
+. 191r53[61] 191r93[111] 196r55[61] 196r95[111] 206r53[137] 211r53[137] 216r58[137]
+. 216r98[111] 221r58[137] 221r98[111] 226r57[137] 226r97[111] 236r56[111]
+. 241r57[111] 246r61[111] 251r54[111] 256r58[111] 261r55[111] 270r56[111]
+. 270r89[61] 270r124[137] 297r53[61] 297r93[111] 320r56[137] 320r96[111]
+. 341r59[111] 360r26[111] 361r22[61] 362r24[137]
+27U14 crear 56|272s7[111] 273s7[61] 274s7[137]
+X 24 cola.ads
+6k9*cola 62e9 56|9w9
+X 26 fechas.ads
+1K9*fechas 58e11 56|6w9 17r9
+5R9*tFecha 9e14 56|41r14 69r24 78r26 82r27 96r24 132r14
+X 29 lista.ads
+8k9*lista 103e10 56|10w9 72r32 86r33 121r35
+19R9 tipoLista 56|105r33[86] 107r29[72] 134r35[121]
+X 31 system.ads
+67M9*Address
+X 38 s-memory.ads
+53V13*Alloc{31|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{31|67M9} 105i<c,__gnat_realloc>22
+X 46 s-stalib.adb
+89U14 Break_Start 90i<c,__gnat_break_start>22
+X 56 tpfinal.adb
+20U11*tpfinal 20b11 381l5 381t12
+24E9 tCategoria 24e107 53r19
+24n24 rol{24E9}
+24n29 estrategia{24E9}
+24n41 accion{24E9}
+24n49 aventura{24E9}
+24n59 arcade{24E9}
+24n67 puzzle{24E9}
+24n75 deporte{24E9}
+24n84 supervivencia{24E9}
+24n99 sandbox{24E9}
+26E9 tEdad 26e38 54r23
+26n19 ATP{26E9}
+26n24 e12{26E9}
+26n29 e15{26E9}
+26n34 e18{26E9}
+28E9 tPremiado 28e48 118r22
+28n23 oro{28E9}
+28n28 plata{28E9}
+28n35 bronce{28E9}
+28n43 nada{28E9}
+32R9 tMedallas 37e14 104r17
+33i7 oro{integer}
+34i7 plata{integer}
+35i7 bronce{integer}
+36f7 premioGanado{float}
+39R9 tUltimo 44e14 106r22 108r21
+40r7 titulo{13|88R9}
+41r7 fecha{26|5R9}
+42f7 importe{float}
+43i7 cantDias{integer}
+48R12 tClaveJuego{13|88R9} 61r35 72r38 86r39 129r14 145r15
+50R9 tInfoJuego 59e14 61r48
+51r8 desarrollador{13|88R9}
+52r17 descripcion{13|88R9}
+53e8 categoria{24E9}
+54e17 edad{26E9}
+55f17 precio{float}
+56i17 stock{integer}
+57i17 alquilados{integer}
+58i8 vendidos{integer}
+61K12 abbJuegos[22|12] 62r8 62r23 166r40 171r41 176r45 181r38 186r42 191r43
+. 196r45 270r79 297r43 361r12
+66R9 tInfoCompra 70e14 72r51
+67f17 importe{float}
+68i17 cantidad{integer}
+69r17 fecha{26|5R9}
+72K12 listaCompras[29|8] 73r8 107r16
+77R9 tInfoAlquiler 84e14 86r52
+78r17 fInicio{26|5R9}
+79i17 duracion{integer}
+80b17 devuelto{boolean}
+81f17 totalAlquiler{float}
+82r17 fechaDev{26|5R9}
+83f17 importeMulta{float}
+86K12 listaAlquiler[29|8] 87r8 105r19
+91I12 tClaveCliente{integer} 111r37 121r41 154r12
+93R9 tInfoCliente 109e14 111r52
+94r7 nombre{13|88R9}
+95r7 apellido{13|88R9}
+96r7 fechaNacimiento{26|5R9}
+97r7 direccion{13|88R9}
+98b7 sancionado{boolean}
+99f7 cantDeuda{float}
+100i7 cantJuegos{integer}
+101i7 creditos{integer}
+102f7 importeTotal{float}
+103i7 cantTorneos{integer}
+104r7 medallas{32R9}
+105r7 alquileres{29|19R9[86]}
+106r7 ultimoAlquier{39R9}
+107r7 compras{29|19R9[72]}
+108r7 ultimaCompra{39R9}
+111K12 abbClientes[22|12] 112r8 112r25 191r81 196r83 216r86 221r86 226r85
+. 236r44 241r45 246r49 251r42 256r46 261r43 270r44 297r81 320r84 341r47 360r14
+116R9 tInfoInscriptos 119e14 121r56
+117b12 descalificacion{boolean}
+118e12 premiado{28E9}
+121K12 listaInscriptos[29|8] 122r8 134r19
+126R12 tClaveTorneos{13|88R9} 137r36
+128R9 tInfoTorneos 135e14 137r51
+129r7 juego{48R12}
+130r7 lema{13|88R9}
+131f7 importe{float}
+132r7 fecha{26|5R9}
+133f7 premio{float}
+134r7 inscriptos{29|19R9[121]}
+137K12 abbTorneos[22|12] 138r8 138r24 206r42 211r42 216r47 221r47 226r46
+. 270r113 320r45 362r13
+140i4 MAX{integer} 149r35 158r35
+144R9 tInfoTopVendidos 147e14 149r43
+145r7 titulo{48R12}
+146i7 vendidos{integer}
+149A9 tTopVendidos(144R9)<integer>
+153R9 tInfoCompradores 156e14 158r43
+154i7 dni{91I12}
+155f7 totalGastado{float}
+158A9 tCompradores(153R9)<integer>
+161V13 menuJuego{integer} 161b13 164l8 164t17 301s18
+166U14 AltaJuego 166b14 166=25 169l8 169t17 303s23
+166p25 juegos{22|21P9[61]}
+171U14 BajarJuego 171b14 171=26 174l8 174t18 304s23
+171p26 juegos{22|21P9[61]}
+176U14 ModificarJuego 176b14 176=30 179l8 179t22 305s23
+176p30 juegos{22|21P9[61]}
+181U14 Top10Juegos 181b14 181>27 184l8 184t19 306s23
+181p27 juegos{22|21P9[61]}
+186U14 ListarCategoria 186b14 186>31 189l8 189t23 307s23
+186p31 juegos{22|21P9[61]}
+191U14 CompraJuegos 191b14 191=28 191=64 194l8 194t20 308s23
+191p28 juegos{22|21P9[61]}
+191p64 clientes{22|21P9[111]}
+196U14 AlquilerJuegos 196b14 196=30 196=66 199l8 199t22 309s23
+196p30 juegos{22|21P9[61]}
+196p66 clientes{22|21P9[111]}
+201V13 menuTorneo{integer} 201b13 204l8 204t18 324s18
+206U14 AltaTorneo 206b14 206=26 209l8 209t18 326s23
+206p26 torneos{22|21P9[137]}
+211U14 BajaTorneo 211b14 211=26 214l8 214t18 327s23
+211p26 torneos{22|21P9[137]}
+216U14 AltaInscripcion 216b14 216=31 216=69 219l8 219t23 328s23
+216p31 torneos{22|21P9[137]}
+216p69 clientes{22|21P9[111]}
+221U14 BajaInscripcion 221b14 221=31 221=69 224l8 224t23 329s23
+221p31 torneos{22|21P9[137]}
+221p69 clientes{22|21P9[111]}
+226U14 EntregaPremios 226b14 226=30 226=68 229l8 229t22 330s23
+226p30 torneos{22|21P9[137]}
+226p68 clientes{22|21P9[111]}
+231V13 menuCliente{integer} 231b13 234l8 234t19 345s17
+236U14 AltaCliente 236b14 236=27 239l8 239t19 347s23
+236p27 clientes{22|21P9[111]}
+241U14 BajarCliente 241b14 241=28 244l8 244t20 348s23
+241p28 clientes{22|21P9[111]}
+246U14 ModificarCliente 246b14 246=32 249l8 249t24 349s23
+246p32 clientes{22|21P9[111]}
+251U14 Top10Clientes 251b14 251>29 254l8 254t21 350s23
+251p29 clientes{22|21P9[111]}
+256U14 CompraCredito 256b14 256=29 259l8 259t21 351s23
+256p29 clientes{22|21P9[111]}
+261U14 DetalleCliente 261b14 261>30 264l8 264t22 352s23
+261p30 clientes{22|21P9[111]}
+270U14 inicializarVar 270b14 270<30 270<67 270<100 275l8 275t22 370s4
+270p30 clientes{22|21P9[111]} 272m13
+270p67 juegos{22|21P9[61]} 273m13
+270p100 torneos{22|21P9[137]} 274m13
+282V13 menu{integer} 282b13 290l8 290t12 372s15
+297U14 opcionJuegos 297b14 297=28 297=64 314t7 374s21
+297p28 juegos{22|21P9[61]} 303m33 304m34 305m38 306r35 307r39 308m36 309m38
+297p64 clientes{22|21P9[111]} 308m44 309m46
+298i7 resp{integer} 301m10 302r15 312r20
+320U14 opcionTorneos 320b14 320=29 320=67 335l8 335t21 375s21
+320p29 torneos{22|21P9[137]} 326m34 327m34 328m39 329m39 330m38
+320p67 clientes{22|21P9[111]} 328m48 329m48 330m47
+321i7 resp{integer} 324m10 325r15 333r20
+341U14 opcionClientes 341b14 341=30 357l8 357t22 376s21
+341p30 clientes{22|21P9[111]} 347m35 348m36 349m40 350r37 351m37 352r38
+342i7 resp{integer} 345m10 346r15 355r20
+360p4 clientes{22|21P9[111]} 370m19 370r19 374m42 374r42 375m44 375r44 376m36
+. 376r36
+361p4 juegos{22|21P9[61]} 370m29 370r29 374m34 374r34
+362p4 torneos{22|21P9[137]} 370m37 370r37 375m35 375r35
+363i4 resp{integer} 372m7 373r13 379r18
+X 59 utiles.ads
+1K9*utiles 56|7w9 18r9 59|43e11
+26V13*enteroEnRango{integer} 56|289s14
+

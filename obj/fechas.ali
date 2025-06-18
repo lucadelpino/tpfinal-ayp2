@@ -1,0 +1,204 @@
+V "GNAT Lib v2021"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_CALENDAR
+RV NO_DELAY
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_NESTED_FINALIZATION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_DEALLOCATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_OBSOLESCENT_FEATURES
+
+U fechas%b		fechas.adb		cde2f179 NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.calendar%s	a-calend.adb		a-calend.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
+Z system%s		system.ads		system.ali
+Z system.concat_5%s	s-conca5.adb		s-conca5.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W text_io%s		text_io.ads		text_io.ali
+W unchecked_deallocation%s
+
+U fechas%s		fechas.ads		1bd0d5eb EE NE OO PK IL
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-calend.ads		20210520051128 474d9720 ada.calendar%s
+D a-charac.ads		20210520051128 2d3ec45b ada.characters%s
+D a-chlat1.ads		20210520051128 66457d31 ada.characters.latin_1%s
+D a-except.ads		20210520051128 946f3014 ada.exceptions%s
+D a-finali.ads		20210520051128 bf4f806b ada.finalization%s
+D a-flteio.ads		20210520051128 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20210520051128 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20210520051128 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20210520051130 119b8fb3 ada.streams%s
+D a-string.ads		20210520051130 90ac6797 ada.strings%s
+D a-strmap.ads		20210520051130 5a88892a ada.strings.maps%s
+D a-sttebu.ads		20210520051130 18209c64 ada.strings.text_buffers%s
+D a-strunb.ads		20210520051130 03325227 ada.strings.unbounded%s
+D a-suteio.ads		20210520051130 26d8e9aa ada.strings.unbounded.text_io%s
+D a-stuten.ads		20210520051130 808c40ad ada.strings.utf_encoding%s
+D a-tags.ads		20210520051130 9eaa38c6 ada.tags%s
+D a-textio.ads		20210520051130 aef4d56d ada.text_io%s
+D a-tiflio.ads		20210520051130 fcca4daa ada.text_io.float_io%s
+D a-tiinio.ads		20210520051130 390edddb ada.text_io.integer_io%s
+D a-tiunio.ads		20210520051130 759c6b0c ada.text_io.unbounded_io%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D fechas.ads		20220617230842 1bd0d5eb fechas%s
+D fechas.adb		20220617231902 7fa18754 fechas%b
+D interfac.ads		20210520051132 edec285f interfaces%s
+D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
+D system.ads		20210520051136 2ffa5114 system%s
+D s-atocou.ads		20210520051132 b45c2d8d system.atomic_counters%s
+D s-conca5.ads		20210520051132 875e432e system.concat_5%s
+D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
+D s-exctab.ads		20210520051132 54135002 system.exception_table%s
+D s-ficobl.ads		20210520051132 078245e4 system.file_control_block%s
+D s-finmas.ads		20210520051132 1ab4dba8 system.finalization_masters%s
+D s-finroo.ads		20210520051132 4ff27390 system.finalization_root%s
+D s-imagei.ads		20210520051134 0d3f86a7 system.image_i%s
+D s-imgint.ads		20210520051134 bdb6f5ec system.img_int%s
+D s-memory.ads		20210520051134 597d6634 system.memory%s
+D s-parame.ads		20210520051134 4752c4cb system.parameters%s
+D s-putima.ads		20210520051134 4e095881 system.put_images%s
+D s-secsta.ads		20210520051134 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20210520051134 a7318a92 system.soft_links%s
+D s-stache.ads		20210520051134 a37c21ec system.stack_checking%s
+D s-stalib.ads		20210520051134 472fbca8 system.standard_library%s
+D s-stalib.adb		20210520051134 977290bf system.standard_library%b
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20210520051134 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20210520051134 7bdda3fa system.stream_attributes%s
+D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
+D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
+D text_io.ads		20210520051136 21b2c898 text_io%s
+D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
+D unchdeal.ads		20210520051136 214516a4 unchecked_deallocation%s
+G a e
+G c Z s b [esfechacorrecta fechas 14 13 none]
+G c Z s b [diasmes fechas 20 13 none]
+G c Z s b [nombremes fechas 25 13 none]
+G c Z s b [esbisiesto fechas 30 13 none]
+G c Z s b [fechatexto fechas 35 13 none]
+G c Z s b [fechaendias fechas 40 13 none]
+G c Z s b [sumadias fechas 45 13 none]
+G c Z s b [diasentrefechas fechas 50 13 none]
+G c Z s b [fechahoy fechas 55 13 none]
+G c Z s b [cls fechas 57 14 none]
+G c Z s s [tfechaIP fechas 5 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 24|2r15 2r60 2r73 2r94 2r113 3r14 3r59 3r72 3r93 3r112 12r7
+X 2 a-calend.ads
+36K13*Calendar 413e17 24|2w117 3r116
+42I9*Time<226I9> 24|167r10
+48I12*Year_Number{integer}
+49I12*Month_Number{integer}
+50I12*Day_Number{integer}
+56V13*Clock{42I9} 24|169s12
+64V13*Year{48I12} 24|172s17
+65V13*Month{49I12} 24|171s16
+66V13*Day{50I12} 24|170s16
+226I9 Time_Rep<long_long_integer>
+X 7 a-flteio.ads
+20K13*Float_Text_IO[19|46] 24|2w98 3r97
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[20|46] 24|2w77 3r76
+X 11 a-string.ads
+16K13*Strings 35e16 24|2r19 3r18
+X 14 a-strunb.ads
+83K21*Unbounded 765e26 24|2w27 3r26
+88R9*Unbounded_String<6|43R9> 744e15 24|50r50
+104V13*To_Unbounded_String{88R9} 24|51s13 52s13 53s13 54s13 55s13 56s13 57s13
+. 58s13 59s13 60s13 61s13 62s13
+117V13*To_String{string} 24|64s14
+X 18 a-textio.ads
+58K13*Text_IO 725e16 24|2r38 2w64 3r63 12r11
+463U14*Put 24|12s19
+X 21 a-tiunio.ads
+25K21*Unbounded_IO 61e29 24|2w46 3r45
+X 23 fechas.ads
+1K9*fechas 58l5 58e11 24|8b14 177l5 177t11
+2I12*tDia{integer} 6r12
+3I12*tMes{integer} 7r12
+4I12*tAnio{integer} 8r13
+5R9*tFecha 9e14 14r39 35r34 40r35 45r32 45r65 50r40 55r29 24|18r39 70r34
+. 84r35 105r32 105r65 106r10 154r40 165r29 166r10
+6i7*dia{2I12} 24|20r20 73r37 97r28 109m9 109r22 119r16 120m15 120r24 122m15
+. 135r16 136m15 136r24 144m15 170m9
+7i7*mes{3I12} 24|20r45 73r69 91r24 110m9 110r22 114r25 123r19 124m18 124r27
+. 126m18 129r31 138r19 139m18 139r27 141m18 144r32 171m9
+8i7*anio{4I12} 24|20r56 74r39 87r21 88r28 88r45 88r64 92r42 111m9 111r23
+. 114r32 127m18 127r28 129r38 142m18 142r28 144r39 172m9
+14V13*esFechaCorrecta{boolean} 14>29 24|18b13 21l8 21t23 72s10
+14r29 fecha{5R9} 24|18b29 20r14 20r39 20r50
+20V13*diasMes{integer} 20>21 20>26 24|20s31 26b13 33l8 33t15 92s25 114s15
+. 129s21 144s22
+20i21 mes{integer} 24|26b21 29r11 32r24
+20i26 anio{integer} 24|26b25 29r36
+25V13*nombreMes{string} 25>24 24|49b13 65l8 65t17 73s53
+25i24 mes{integer} 24|49b24 64r36
+30V13*esBisiesto{boolean} 30>24 24|29s25 38b13 44l8 44t18
+30i24 anio{integer} 24|38b24 41r11 41r30 43r11 43r32
+35V13*fechaTexto{string} 35>24 24|70b13 79l8 79t18
+35r24 fecha{5R9} 24|70b24 72r26 73r31 73r63 74r33
+40V13*fechaEnDias{integer} 40>25 24|84b13 100l8 100t19 157s15 157s33
+40r25 fecha{5R9} 24|84b25 87r15 88r22 88r39 88r58 91r18 92r36 97r22
+45V13*sumaDias{5R9} 45>22 45>40 24|105b13 149l8 149t16
+45r22 fecha{5R9} 24|105b22 109r16 110r16 111r17
+45i40 dias{integer} 24|105b40 112r12
+50V13*diasEntreFechas{integer} 50>29 50>33 24|154b13 160l8 160t23
+50r29 f1{5R9} 24|154b29 157r45
+50r33 f2{5R9} 24|154b33 157r27
+55V13*fechaHoy{5R9} 24|165b13 175l8 175t16
+57U14*CLS 24|10b14 13l8 13t11
+X 24 fechas.adb
+27a7 diasMeses(integer) 32r14
+50a7 nombreMeses(14|88R9) 64r24
+85i7 dias{integer} 87m7 88m7 88r15 92m10 92r18 97m7 97r15 99r14
+85i13 m{integer} 90m7 91r14 92r33 94m10 94r15
+106r7 f{23|5R9} 109m7 110m7 111m7 114r23 114r30 119r14 120m13 120r22 122m13
+. 123r17 124m16 124r25 126m16 127m16 127r26 129r29 129r36 135r14 136m13 136r22
+. 138r17 139m16 139r25 141m16 142m16 142r26 144m13 144r30 144r37 148r14
+107i7 tope{integer} 114m7 119r22 129m13
+107i13 d{integer} 112m7 116r14 117m10 117r15 133r14 134m10 134r15
+155i7 dias{integer} 157m7 159r14
+166r7 f{23|5R9} 170m7 171m7 172m7 174r14
+167i7 c{2|42I9} 169m7 170r20 171r22 172r22
+X 27 system.ads
+67M9*Address
+X 37 s-memory.ads
+53V13*Alloc{27|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{27|67M9} 105i<c,__gnat_realloc>22
+X 44 s-stalib.adb
+89U14 Break_Start 90i<c,__gnat_break_start>22
+X 52 text_io.ads
+24K9*Text_IO=24:29 24|2w6 2w38 3r5 3r37
+X 54 unchdeal.ads
+20u11*Unchecked_Deallocation 24|1w6
+
