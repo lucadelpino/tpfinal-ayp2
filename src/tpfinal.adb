@@ -293,25 +293,91 @@ end BajarJuego ;
       null;
    end BajarCliente;
 
-   procedure ModificarCliente (clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end ModificarCliente;
+--*QH: Modifica los datos de un cliente mientras el usuario lo desee.
+--PRE: cliente=C 
+--POS: cliente=C1 y C1 es C con los datos de clientes modificados.
+--EXC: -
+procedure ModificarCliente (cliente: in out abbClientes.tipoArbol) is
+opcion:interger
+k:tClavecliente
+i:tInfoCliente   
+begin
+   loop
+      k ← enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999);          --ÚTILES
+		if existeCliente(cliente,k) then  							                        --NIVEL 3
+			buscar(cliente,k,i);  										                        --ADT ABB
+			mostrarCliente(k,cliente); 								                        --NIVEL 3
+	      if (confirma("esta seguro de modificar al cliente: ", k)) entonces
+		      modificarDatosCliente(i); 							                           --NIVEL 3
+		      modificar(cliente,k,i); 								                        --ADT ABB
+         end if;
+      else
+	      put_line("cliente no registrado");
+      end if;
+      exit  when not confirma("desea modificar otro cliente");						      --ÚTILES
+   end loop;
+end ModificarCliente;
 
-   procedure Top10Clientes (clientes: in abbClientes.tipoArbol) is
-   begin
-      null;
-   end Top10Clientes;
+--QH: Genera y muestra el top 10 de clientes con mayor gasto.
+--PRE: clientes=C.
+--POS:-
+--EXC: -
+procedure Top10Clientes (clientes: in abbClientes.tipoArbol) is
+MAX=10
 
-   procedure CompraCredito (clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end CompraCredito;
+top:tCompradores
+begin
+   inicializarTop10Compradores(top,MAX);                  --NIVEL 3
+	buscarTop10Compradores(clientes,top,dim);              --NIVEL 3
+	mostrarTop10Compradores(clientes,top,dim);             --NIVEL 3
+end Top10Clientes;
 
-   procedure DetalleCliente (clientes: in abbClientes.tipoArbol) is
-   begin
-      null;
-   end DetalleCliente;
+--QH: Realiza la compra de créditos y actualiza los registros de creditos del cliente.
+--a=A 
+--a=A1 y A1 es A con el saldo de créditos de un cliente actualizado.
+--EXC: -
+procedure CompraCredito (a: in out abbClientes.tipoArbol) is
+porcentaje=10
+valor=1000
+
+n:interger
+importe:float
+k:tClavecliente
+begin
+   loop
+      k:= enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); --UTILES
+      if existeCliente(cliente,k) then                                     --NIVEL 3
+         n:=enteroEnRango ("Ingrese la cantidad de créditos que desea comprar",1,9999999)--UTILES
+         importe := n * valor * (1 + porcentaje / 100)
+         put_line("importe total de:" ,importe)
+         if confirma("desea acreditarlos?") then                                         --UTILES
+            acreditacion(cliente,k,importe,n)                                            --NIVEL 3
+         else
+            put_line("acreditación cancelada")
+         end if;
+      else
+         put_line("cliente no registrado")
+      end if;
+      exit  when confirma("desea cargar más créditos?");                                 --UTILES
+   end loop;
+end CompraCredito;
+
+--*QH: Muestra los datos de un cliente a partir de su DNI.
+--PRE: cliente=C.
+--POS: -
+--EXC: -
+procedure DetalleCLiente (cliente: in abbClientes.tipoArbol)is
+k:tClavecliente;
+begin
+   loop
+      k:= enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); --UTILES
+      if existeCliente(cliente,k) then                                     --NIVEL 3
+         mostrarCliente(k,cliente);                                        --NIVEL 3
+      else
+         put_line("cliente no registrado")
+      end if;
+      exit  when not confirma("¿Desea ver el detalle de otro cliente?");  --UTILES
+end DetalleCLiente;
    ----------------------------------------------------------------------------NIVEL 1--------------------------------------------------------------------------------------------
    --QH: Inicializa variables globales.
    --PRE: --
