@@ -158,20 +158,70 @@ procedure tpfinal is
    type tCompradores is array (1..MAX) of tInfoCompradores;
 
    ----------------------------------------------------------------------------NIVEL 2--------------------------------------------------------------------------------------------
-   function menuJuego return integer is
-   begin
-      return 0;
-   end menuJuego;
+  --QH:Muestra las opciones del menú de juegos y devuelve la opción elegida por el usuario.
+--PRE:-
+--POS:menuJuego = N y N es la opción elegida del menú
+--EXC: - 
+function menuJuego return interger is
+begin
+   put_line("MENÚ JUEGOS")
+   put_line("1. Alta de juego")
+   put_line("2. Baja de juego")
+   put_line("3. Modificar juego")
+   put_line("4. Top 10 juegos más vendidos")
+   put_line("5. Lista de Juegos según categoría")
+   put_line("6. Compras")
+   put_line("7. Alquileres")
+   put_line("0. Volver")
+   menuJuego:=enteroEnRango("ingrese una opcion",0,7) --utiles
+end menuJuego;
 
-   procedure AltaJuego (juegos: in out abbJuegos.tipoArbol) is
-   begin
-      null;
-   end AltaJuego;
+--QH: Carga un nuevo juego de la empresa.
+--PRE:juegos=A 
+--POS: juegos = A1 y A1 es A con un nuevo juego.
+--EXC:
+procedure AltaJuego (juegos: in out abbJuegos.tipoArbol) is
+iJuego:tinfoJuegos;
+kJuego:tClaveJuegos;
+begin
+   loop
+      kJuego:=textoNoVacio("ingrese el titulo del juego"); --ÚTILES
+      if existeJuego(juegos,kJuego) then;                   --NIVEL 3
+         put_line("el juego ingresado ya existe");
+      else
+         put_line("ingrese los datos del juego");
+         ingreseDatosJuegos(iJuego);                        --NIVEL 3
+         guardarJuego(juegos,kJuego,iJuego);                --NIVEL 3
+      end if
+      exit  when not 
+   end loop;
+end AltaJuego;
 
-   procedure BajarJuego (juegos: in out abbJuegos.tipoArbol) is
-   begin
-      null;
-   end BajarJuego;
+--QH: Se dan de baja uno o más juegos mientras el usuario lo desee.
+--PRE: juegos = J
+--POS: juegos = J1 y J1 es J sin los juegos eliminados.
+--EXC: -
+procedure BajarJuego (juegos: in out abbJuegos.tipoArbol) is
+kJuego:tClaveJuegos;
+iJuego:tInfoJuegos;
+begin
+   loop
+      kJuego:=textoNoVacio("ingrese el titulo del juego"); --ÚTILES
+      if not existeJuego(juegos,kJuego) then;              --NIVEL 3
+         put_line("el juego ingresado no existe");
+      else
+         buscar(juegos,kJuego,iJuego);                     --ADT ABB
+         mostrarJuego(kJuego,iJuego);                      --NIVEL5
+         put_line("ingrese los datos del juego");
+         if iJuego.alquilados = 0 then
+            eliminarJuego(juegos,kJuego);                  --NIVEL 3 
+         else
+            put_line("No puede darse de baja el juego mientras esté alquilado");
+         end if;
+      end if      
+      exit  when not confirma(“¿Desea borrar otro juego?”);--UTILES
+   end loop;
+end BajarJuego ;
 
    procedure ModificarJuego (juegos: in out abbJuegos.tipoArbol) is
    begin
