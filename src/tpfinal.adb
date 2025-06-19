@@ -263,7 +263,90 @@ begin
 end registrarUltimaCompra;
 
    ----------------------------------------------------------------------------NIVEL 4--------------------------------------------------------------------------------------------
+-- QH: Devuelve una categoría pedida al usuario
+-- PRE: -
+-- POS: cat = C y C es la categoría elegida
+-- EXC: -
+procedure pedirCategoria(cat: out tCategorias) is
+   aux: Integer;
+begin
+   aux := categorias;  -- NIVEL 5
+   case aux is
+      when 1 => cat := rol;
+      when 2 => cat := estrategia;
+      when 3 => cat := accion;
+      when 4 => cat := aventura;
+      when 5 => cat := arcade;
+      when 6 => cat := puzzle;
+      when 7 => cat := deporte;
+      when 8 => cat := supervivencia;
+      when 9 => cat := sandbox;
+      when others => null;
+   end case;
+end pedirCategoria;
 
+-- QH: Devuelve la edad sugerida de un juego, elegida por el usuario.
+-- PRE: --
+-- POS: edad=E y E es la edad elegida por el usuario.
+-- EXC: --
+procedure ingresoEdad(edad: out tEdad) is
+   aux: Integer;
+begin
+   loop
+      aux := edad;  -- NIVEL 5
+      exit when aux in 1..4;
+      case aux is
+         when 1 => edad := ATP;
+         when 2 => edad := mas12;
+         when 3 => edad := mas15;
+         when 4 => edad := mas18;
+         when others => null;
+      end case;
+   end loop;
+end ingresoEdad;
+
+-- QH: Muestra las opciones de modificación de un juego y devuelve la opción elegida por el usuario.
+-- PRE:-
+-- POS: menuModificarJuego = N y N es el valor entero de la opción seleccionada a modificar.
+-- EXC: -
+function menuModificarJuego return Integer is
+begin
+   Put_Line("1. Modificar el desarrollador");
+   Put_Line("2. Modificar la descripción");
+   Put_Line("3. Modificar categoría");
+   Put_Line("4. Modificar la clasificación por nivel de violencia");
+   Put_Line("5. Modificar precio del juego");
+   return enteroEnRango("Seleccione la opción a modificar", 1, 5);  -- ÚTILES
+end menuModificarJuego;
+
+-- QH: Devuelve el precio de un juego pedido al usuario.
+-- PRE: –
+-- POS: cargarPrecio=P y P>0.
+-- EXC: -
+function cargarPrecio return Float is
+   precio: Float;
+begin
+   loop
+      precio := numeroReal("Ingrese el precio del juego");  -- ÚTILES
+      exit when precio > 0.0;
+   end loop;
+   return precio;
+end cargarPrecio;
+
+-- QH: Agrega de forma ordenada el juego al top 10 de los más vendidos.
+-- PRE: top = T, dim = N, iJuego = I, kJuego = K
+-- POS: top = T1 y T1 es T con un nuevo juego en el top 10.
+-- EXC: -
+procedure insertarJuego(top: in out tTopVendidos; dim: Integer; iJuego: tInfoJuego; kJuego: tClaveJuego) is
+   I: Integer := dim;
+begin
+   while I >= 1 and then iJuego.vendidos > top(I).vendidos loop
+      top(I + 1) := top(I);
+      I := I - 1;
+   end loop;
+   top(I + 1).titulo := kJuego;
+   top(I + 1).vendidos := iJuego.vendidos;
+end insertarJuego;
 
    ----------------------------------------------------------------------------NIVEL 3--------------------------------------------------------------------------------------------
 
