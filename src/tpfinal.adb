@@ -158,207 +158,361 @@ procedure tpfinal is
    type tCompradores is array (1..MAX) of tInfoCompradores;
 
    ----------------------------------------------------------------------------NIVEL 2--------------------------------------------------------------------------------------------
-  --QH:Muestra las opciones del menú de juegos y devuelve la opción elegida por el usuario.
---PRE:-
---POS:menuJuego = N y N es la opción elegida del menú
---EXC: - 
-function menuJuego return interger is
+--*QH: Muestra las opciones del menú de juegos y devuelve la opción elegida por el usuario.
+--PRE: -
+--POS: menuJuego = N y N es la opción elegida del menú
+--EXC: -
+function menuJuego return Integer is
+   opcion : Integer;
 begin
-   put_line("MENÚ JUEGOS")
-   put_line("1. Alta de juego")
-   put_line("2. Baja de juego")
-   put_line("3. Modificar juego")
-   put_line("4. Top 10 juegos más vendidos")
-   put_line("5. Lista de Juegos según categoría")
-   put_line("6. Compras")
-   put_line("7. Alquileres")
-   put_line("0. Volver")
-   menuJuego:=enteroEnRango("ingrese una opcion",0,7) --utiles
+   put_line("MENÚ JUEGOS");
+   put_line("1. Alta de juego");
+   put_line("2. Baja de juego");
+   put_line("3. Modificar juego");
+   put_line("4. Top 10 juegos más vendidos");
+   put_line("5. Lista de Juegos según categoría");
+   put_line("6. Compras");
+   put_line("7. Alquileres");
+   put_line("0. Volver");
+   opcion := enteroEnRango("Ingrese una opción", 0, 7); -- ÚTILES
+   return opcion;
 end menuJuego;
 
---QH: Carga un nuevo juego de la empresa.
---PRE:juegos=A 
+--*QH: Carga un nuevo juego de la empresa.
+--PRE: juegos = A 
 --POS: juegos = A1 y A1 es A con un nuevo juego.
---EXC:
+--EXC: -
 procedure AltaJuego (juegos: in out abbJuegos.tipoArbol) is
-iJuego:tinfoJuegos;
-kJuego:tClaveJuegos;
+   iJuego : tInfoJuegos;
+   kJuego : tClaveJuegos;
 begin
    loop
-      kJuego:=textoNoVacio("ingrese el titulo del juego"); --ÚTILES
-      if existeJuego(juegos,kJuego) then;                   --NIVEL 3
-         put_line("el juego ingresado ya existe");
+      kJuego := textoNoVacio("Ingrese el título del juego"); -- ÚTILES
+      if existeJuego(juegos, kJuego) then                      -- NIVEL 3
+         put_line("El juego ingresado ya existe");
       else
-         put_line("ingrese los datos del juego");
-         ingreseDatosJuegos(iJuego);                        --NIVEL 3
-         guardarJuego(juegos,kJuego,iJuego);                --NIVEL 3
-      end if
-      exit  when not 
+         put_line("Ingrese los datos del juego");
+         ingreseDatosJuegos(iJuego);                           -- NIVEL 3
+         guardarJuego(juegos, kJuego, iJuego);                 -- NIVEL 3
+      end if;
+      exit when not confirma("¿Desea cargar otro juego?");    -- ÚTILES
    end loop;
 end AltaJuego;
 
---QH: Se dan de baja uno o más juegos mientras el usuario lo desee.
+--*QH: Se dan de baja uno o más juegos mientras el usuario lo desee.
 --PRE: juegos = J
 --POS: juegos = J1 y J1 es J sin los juegos eliminados.
 --EXC: -
 procedure BajarJuego (juegos: in out abbJuegos.tipoArbol) is
-kJuego:tClaveJuegos;
-iJuego:tInfoJuegos;
+   kJuego : tClaveJuegos;
+   iJuego : tInfoJuegos;
 begin
    loop
-      kJuego:=textoNoVacio("ingrese el titulo del juego"); --ÚTILES
-      if not existeJuego(juegos,kJuego) then;              --NIVEL 3
-         put_line("el juego ingresado no existe");
+      kJuego := textoNoVacio("Ingrese el título del juego"); -- ÚTILES
+      if not existeJuego(juegos, kJuego) then                 -- NIVEL 3
+         put_line("El juego ingresado no existe");
       else
-         buscar(juegos,kJuego,iJuego);                     --ADT ABB
-         mostrarJuego(kJuego,iJuego);                      --NIVEL5
-         put_line("ingrese los datos del juego");
+         buscar(juegos, kJuego, iJuego);                       -- ADT ABB
+         mostrarJuego(kJuego, iJuego);                         -- NIVEL 5
          if iJuego.alquilados = 0 then
-            eliminarJuego(juegos,kJuego);                  --NIVEL 3 
+            eliminarJuego(juegos, kJuego);                     -- NIVEL 3 
          else
             put_line("No puede darse de baja el juego mientras esté alquilado");
          end if;
-      end if      
-      exit  when not confirma(“¿Desea borrar otro juego?”);--UTILES
+      end if;
+      exit when not confirma("¿Desea borrar otro juego?");    -- ÚTILES
    end loop;
-end BajarJuego ;
+end BajarJuego;
 
-   procedure ModificarJuego (juegos: in out abbJuegos.tipoArbol) is
-   begin
-      null;
-   end ModificarJuego;
+--*QH: Modifica la información de juegos mientras el usuario desee.
+--PRE: juegos = J y J tiene juegos cargados.
+--POS: juegos = J1 y J1 es J pero con uno o más juegos modificados.
+--EXC: -
+procedure ModificarJuego (juegos: in out abbJuegos.tipoArbol) is
+   kJuego : tClaveJuegos;
+   iJuego : tInfoJuegos;
+begin
+   loop
+      kJuego := textoNoVacio("Ingrese el juego que desea modificar");
+      if existeJuego(juegos, kJuego) then                             -- NIVEL 3
+         buscar(juegos, kJuego, iJuego);                              -- ADT ABB
+         mostrarJuego(kJuego, iJuego);                                -- NIVEL 5
+         if confirma("¿Quiere modificar este juego?") then            -- ÚTILES
+            modificarDatosJuegos(iJuego);                             -- NIVEL 3
+            modificar(juegos, kJuego, iJuego);                        -- ADT ABB
+         end if;
+      else
+         put_line("El juego ingresado no se encuentra");
+      end if;
+      exit when not confirma("¿Desea modificar los datos de otro juego?");  -- ÚTILES
+   end loop;
+end ModificarJuego;
 
-   procedure Top10Juegos (juegos: in abbJuegos.tipoArbol) is
-   begin
-      null;
-   end Top10Juegos;
+--*QH: Genera y muestra el top 10 de juegos más vendidos del mes.
+--PRE: juego = J
+--POS: -
+--EXC: -
+procedure Top10Juegos (juego: in abbJuegos.tipoArbol) is
+   MAX : constant Integer := 10;
+   top : tTopVendidos;
+   dim : Integer;
+begin
+   inicializarTop10(top, MAX);        -- NIVEL 3
+   buscarTop10(juego, top, dim);     -- NIVEL 3
+   mostrarTop10(juego, top, dim);    -- NIVEL 3
+end Top10Juegos;
 
-   procedure ListarCategoria (juegos: in abbJuegos.tipoArbol) is
-   begin
-      null;
-   end ListarCategoria;
+--*QH: Crea un listado según una categoría.
+--PRE: juegos = J
+--POS: -
+--EXC: -
+procedure ListarCategoria (juegos: in abbJuegos.tipoArbol) is
+   cat : tCategoria;
+   q   : colaAuxJuegos;
+begin
+   crear(q);                    -- ADT COLA
+   pedirCategoria(cat);         -- NIVEL 4
+   crearListadoCat(juegos, cat, q);  -- NIVEL 3
+end ListarCategoria;
 
-   procedure CompraJuegos (juegos: in out abbJuegos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end CompraJuegos;
 
-   procedure AlquilerJuegos (juegos: in out abbJuegos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end AlquilerJuegos;
+--*QH: Realiza la compra de uno o más juegos mientras el usuario lo desee.
+--PRE: juego = J, cliente = C
+--POS: juego = J1 y J1 es J con el stock y cantidad de ejemplares vendidos de los juegos vendidos modificados;
+--      cliente = C1 y C1 es C con la lista de compras del cliente indicado por el usuario modificada.
+--EXC: -
+procedure CompraJuegos (juego: in out abbJuegos.tipoArbol; cliente: in out abbClientes.tipoArbol) is
+   iJuego  : tInfoJuegos;
+   kJuego  : tClaveJuegos;
+   iCliente: tInfoCliente;
+   kCliente: tClaveCliente;
+begin
+   loop
+      PedirDatosCliente(cliente, kCliente, iCliente);                           -- NIVEL 3
+      if iCliente.sancionado then
+         put_line("Cliente sancionado, no puede realizar compras");
+      else
+         obtenerJuegoDisponible(juego, kJuego, iJuego);                        -- NIVEL 3
+         mostrarJuego(kJuego, iJuego);                                         -- NIVEL 5
+         if (iJuego.stock > 0) and then confirma("¿Desea comprar el juego?") then
+            realizarCompra(juego, kJuego, cliente, kCliente);                  -- NIVEL 3
+         end if;
+      end if;
+      exit when not confirma("¿Desea comprar otro juego?");                    -- ÚTILES
+   end loop;
+end CompraJuegos;
 
-   function menuTorneo return integer is
-   begin
-      return 0;
-   end menuTorneo;
+--*QH: Realiza el alquiler de un juego y actualiza la información de alquileres.
+--PRE: juegos = J, clientes = C
+--POS: juegos = J1 y J1 es J con el stock y cantidad de alquilados del juego pedido al usuario actualizados;
+--      clientes = C1 y C1 es C con el listado de alquileres de un cliente pedido al usuario actualizado.
+--EXC: -
+procedure AlquilerJuegos (juegos: in out abbJuegos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end AlquilerJuegos;
 
-   procedure AltaTorneo (torneos: in out abbTorneos.tipoArbol) is
-   begin
-      null;
-   end AltaTorneo;
+--*QH: Muestra las opciones de torneos y retorna la opción ingresada por el usuario.
+--PRE: -
+--POS: menuTorneo = N y N es la opción elegida por el usuario.
+--EXC: -
+function menuTorneo return Integer is
+   opcion : Integer;
+begin
+   put_line("MENÚ TORNEOS");
+   put_line("1. Alta torneo");
+   put_line("2. Baja torneo");
+   put_line("3. Alta inscripción");
+   put_line("4. Baja inscripción");
+   put_line("5. Entrega de premios");
+   put_line("0. Volver");
+   opcion := enteroEnRango("Ingrese una opción", 0, 5);  -- ÚTILES
+   return opcion;
+end menuTorneo;
 
-   procedure BajaTorneo (torneos: in out abbTorneos.tipoArbol) is
-   begin
-      null;
-   end BajaTorneo;
+--*QH: Da de alta un torneo, registrando sus datos.
+--PRE: torneos = T
+--POS: torneos = T1 y T1 es T con un nuevo torneo.
+--EXC: -
+procedure AltaTorneo (torneos: in out abbTorneos.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end AltaTorneo;
 
-   procedure AltaInscripcion (torneos: in out abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end AltaInscripcion;
+--*QH: Da de baja un torneo.
+--PRE: torneos = T
+--POS: torneos = T1 y T1 es T sin el torneo eliminado.
+--EXC: -
+procedure BajaTorneo (torneos: in out abbTorneos.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end BajaTorneo;
 
-   procedure BajaInscripcion (torneos: in out abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end BajaInscripcion;
+--*QH: Registra una inscripción a un torneo.
+--PRE: torneos = T, clientes = C
+--POS: torneos = T1 y T1 es T con una inscripción más a un torneo;
+--      clientes = C1 y C1 es C con la participación a torneos de un cliente actualizada.
+--EXC: -
+procedure AltaInscripcion (torneos: in out abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end AltaInscripcion;
 
-   procedure EntregaPremios (torneos: in out abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end EntregaPremios;
+--*QH: Da de baja la inscripción de un cliente a un torneo.
+--PRE: torneos = T, clientes = C
+--POS: torneos = T1 y T1 es T sin la inscripción de un torneo eliminada;
+--      clientes = C1 y C1 es C con la participación a torneos de un cliente actualizada.
+--EXC: -
+procedure BajaInscripcion (torneos: in out abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end BajaInscripcion;
 
-   function menuCliente return integer is
-   begin
-      return 0;
-   end menuCliente;
+--*QH: Registra la entrega de premios de un torneo.
+--PRE: torneos = T, clientes = C
+--POS: clientes = C1 y C1 es C con los registros de medallas de clientes correspondientes actualizadas.
+--EXC: -
+procedure EntregaPremios (torneos: in abbTorneos.tipoArbol; clientes: in out abbClientes.tipoArbol) is
+begin
+   put_line("Módulo no implementado");
+   continua("Presione una tecla para volver"); -- ÚTILES
+end EntregaPremios;
 
-   procedure AltaCliente (clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end AltaCliente;
+--*QH: Muestra las opciones de cliente y devuelve la opción ingresada por el usuario.
+--PRE: -
+--POS: menuCliente = N y N es la opción elegida por el usuario.
+--EXC: -
+function menuCliente return Integer is
+   opcion : Integer;
+begin
+   put_line("1. Alta cliente");                       
+   put_line("2. Baja cliente");                       
+   put_line("3. Modificar cliente");                  
+   put_line("4. Top 10 clientes más compradores");    
+   put_line("5. Compras de créditos");                
+   put_line("6. Detalle del cliente");                
+   put_line("0. Volver");                             
+   opcion := enteroEnRango("Ingrese una opción", 0, 6); -- ÚTILES
+   return opcion;
+end menuCliente;
 
-   procedure BajarCliente (clientes: in out abbClientes.tipoArbol) is
-   begin
-      null;
-   end BajarCliente;
+--*QH: Da de alta a un nuevo cliente solicitando y registrando sus datos.
+--PRE: cliente = C
+--POS: cliente = C1 y C1 es C con un nuevo cliente.
+--EXC: Si el árbol está lleno, muestra un mensaje de error.
+procedure AltaCliente (cliente: in out abbClientes.tipoArbol) is
+   kCliente : tClaveCliente;
+   iCliente : tInfoCliente;
+begin
+   loop
+      kCliente := enteroEnRango("Ingrese el DNI de cliente", 10000000, 99999999); -- ÚTILES
+      if existeCliente(cliente, kCliente) then                                    -- NIVEL 3
+         put_line("Cliente ya registrado");
+      else
+         cargarInfoCliente(iCliente);                                             -- NIVEL 3
+         insertar(cliente, kCliente, iCliente);                                   -- ADT ABB
+      end if;
+      exit when not confirma("¿Desea añadir otro cliente?");                      -- ÚTILES
+   end loop;
+exception
+   when arbolLleno =>
+      put_line("Ocurrió un error al cargar el cliente. Inténtelo más tarde");
+end AltaCliente;
+
+--*QH: Elimina uno o más clientes según el DNI ingresado por el usuario.
+--PRE: cliente = C
+--POS: cliente = C1 y C1 es C sin los clientes eliminados.
+--EXC: -
+procedure BajarCliente (cliente: in out abbClientes.tipoArbol) is
+   k : tClaveCliente;
+begin
+   loop
+      k := enteroEnRango("Ingrese el DNI de cliente", 10000000, 99999999);  -- ÚTILES
+      if existeCliente(cliente, k) then                                     -- NIVEL 3
+         mostrarCliente(k, cliente);                                        -- NIVEL 3
+         if confirma("¿Está seguro de eliminar al cliente?") then
+            suprimir(cliente, k);                                           -- ADT ABB
+         else
+            put_line("Eliminación cancelada");
+         end if;
+      else
+         put_line("Cliente no registrado");
+      end if;
+      exit when not confirma("¿Desea eliminar otro cliente?");              -- ÚTILES
+   end loop;
+end BajarCliente;
 
 --*QH: Modifica los datos de un cliente mientras el usuario lo desee.
 --PRE: cliente=C 
 --POS: cliente=C1 y C1 es C con los datos de clientes modificados.
 --EXC: -
 procedure ModificarCliente (cliente: in out abbClientes.tipoArbol) is
-opcion:interger
-k:tClavecliente
-i:tInfoCliente   
+   opcion : Integer;
+   k : tClavecliente;
+   i : tInfoCliente; 
 begin
    loop
-      k ← enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999);          --ÚTILES
-		if existeCliente(cliente,k) then  							                        --NIVEL 3
-			buscar(cliente,k,i);  										                        --ADT ABB
-			mostrarCliente(k,cliente); 								                        --NIVEL 3
-	      if (confirma("esta seguro de modificar al cliente: ", k)) entonces
-		      modificarDatosCliente(i); 							                           --NIVEL 3
-		      modificar(cliente,k,i); 								                        --ADT ABB
+      k := enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); -- ÚTILES
+      if existeCliente(cliente, k) then                                     -- NIVEL 3
+         buscar(cliente, k, i);                                             -- ADT ABB
+         mostrarCliente(k, cliente);                                        -- NIVEL 3
+         if confirma("¿Está seguro de modificar al cliente: ", k) then
+            modificarDatosCliente(i);                                       -- NIVEL 3
+            modificar(cliente, k, i);                                       -- ADT ABB
          end if;
       else
-	      put_line("cliente no registrado");
+         put_line("Cliente no registrado");
       end if;
-      exit  when not confirma("desea modificar otro cliente");						      --ÚTILES
+      exit when not confirma("¿Desea modificar otro cliente?");            -- ÚTILES
    end loop;
 end ModificarCliente;
 
---QH: Genera y muestra el top 10 de clientes con mayor gasto.
---PRE: clientes=C.
---POS:-
---EXC: -
+-- QH: Genera y muestra el top 10 de clientes con mayor gasto.
+-- PRE: clientes=C.
+-- POS: -
+-- EXC: -
 procedure Top10Clientes (clientes: in abbClientes.tipoArbol) is
-MAX=10
-
-top:tCompradores
+   MAX : constant Integer := 10;
+   top : tCompradores;
+   dim : Integer;
 begin
-   inicializarTop10Compradores(top,MAX);                  --NIVEL 3
-	buscarTop10Compradores(clientes,top,dim);              --NIVEL 3
-	mostrarTop10Compradores(clientes,top,dim);             --NIVEL 3
+   inicializarTop10Compradores(top, MAX);                   -- NIVEL 3
+   buscarTop10Compradores(clientes, top, dim);              -- NIVEL 3
+   mostrarTop10Compradores(clientes, top, dim);             -- NIVEL 3
 end Top10Clientes;
 
---QH: Realiza la compra de créditos y actualiza los registros de creditos del cliente.
---a=A 
---a=A1 y A1 es A con el saldo de créditos de un cliente actualizado.
---EXC: -
+-- QH: Realiza la compra de créditos y actualiza los registros de créditos del cliente.
+-- PRE: a=A 
+-- POS: a=A1 y A1 es A con el saldo de créditos de un cliente actualizado.
+-- EXC: -
 procedure CompraCredito (a: in out abbClientes.tipoArbol) is
-porcentaje=10
-valor=1000
+   porcentaje : constant Integer := 10;
+   valor : constant Integer := 1000;
 
-n:interger
-importe:float
-k:tClavecliente
+   n : Integer;
+   importe : Float;
+   k : tClavecliente;
 begin
    loop
-      k:= enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); --UTILES
-      if existeCliente(cliente,k) then                                     --NIVEL 3
-         n:=enteroEnRango ("Ingrese la cantidad de créditos que desea comprar",1,9999999)--UTILES
-         importe := n * valor * (1 + porcentaje / 100)
-         put_line("importe total de:" ,importe)
-         if confirma("desea acreditarlos?") then                                         --UTILES
-            acreditacion(cliente,k,importe,n)                                            --NIVEL 3
+      k := enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); -- ÚTILES
+      if existeCliente(a, k) then                                           -- NIVEL 3
+         n := enteroEnRango("Ingrese la cantidad de créditos que desea comprar", 1, 9999999); -- ÚTILES
+         importe := Float(n * valor) * (1.0 + Float(porcentaje) / 100.0);
+         put_line("Importe total de: " & Float'Image(importe));
+         if confirma("¿Desea acreditarlos?") then                           -- ÚTILES
+            acreditacion(a, k, importe, n);                                 -- NIVEL 3
          else
-            put_line("acreditación cancelada")
+            put_line("Acreditación cancelada");
          end if;
       else
-         put_line("cliente no registrado")
+         put_line("Cliente no registrado");
       end if;
-      exit  when confirma("desea cargar más créditos?");                                 --UTILES
+      exit when not confirma("¿Desea cargar más créditos?");                -- ÚTILES
    end loop;
 end CompraCredito;
 
@@ -366,18 +520,20 @@ end CompraCredito;
 --PRE: cliente=C.
 --POS: -
 --EXC: -
-procedure DetalleCLiente (cliente: in abbClientes.tipoArbol)is
-k:tClavecliente;
+procedure DetalleCliente (cliente: in abbClientes.tipoArbol) is
+   k : tClavecliente;
 begin
    loop
-      k:= enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); --UTILES
-      if existeCliente(cliente,k) then                                     --NIVEL 3
-         mostrarCliente(k,cliente);                                        --NIVEL 3
+      k := enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999); -- ÚTILES
+      if existeCliente(cliente, k) then                                     -- NIVEL 3
+         mostrarCliente(k, cliente);                                        -- NIVEL 3
       else
-         put_line("cliente no registrado")
+         put_line("Cliente no registrado");
       end if;
-      exit  when not confirma("¿Desea ver el detalle de otro cliente?");  --UTILES
-end DetalleCLiente;
+      exit when not confirma("¿Desea ver el detalle de otro cliente?");     -- ÚTILES
+   end loop;
+end DetalleCliente;
+
    ----------------------------------------------------------------------------NIVEL 1--------------------------------------------------------------------------------------------
    --QH: Inicializa variables globales.
    --PRE: --
