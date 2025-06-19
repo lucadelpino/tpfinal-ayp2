@@ -267,7 +267,10 @@ end registrarUltimaCompra;
 
    ----------------------------------------------------------------------------NIVEL 3--------------------------------------------------------------------------------------------
 
-
+--QH: Determina si existe un juego.
+--PRE: a=A y kJuegos=K
+--POS: existeJuego=verdadero si existe K en A, sino existeJuego=falso.
+--EXC:-
 function existeJuego(a : abbJuegos.tipoArbol; kJuegos : tClaveJuegos) return Boolean is
    iJuegos : tInfoJuegos;
 begin
@@ -278,6 +281,10 @@ exception
       return False;
 end existeJuego;
 
+--QH: Devuelve la información de un juego para dar de alta en el sistema.
+--PRE:--
+--POS: iJuego= I y I tiene la información del juego.
+--EXC: -
 procedure ingresoDatosJuego(iJuego : out tInfoJuegos) is
 begin
    iJuego.desarrollador := textoNoVacio("Ingrese el desarrollador");       -- ÚTILES
@@ -295,6 +302,10 @@ begin
    iJuego.vendidos   := 0;
 end ingresoDatosJuego;
 
+--QH: Inserta un juego en el ABB de juegos.
+--PRE: juegos = J
+--POS: juegos=J1 y J1 es J con un juego nuevo.
+--EXC:-
 procedure guardarJuego(juegos : in out abbJuegos.tipoArbol; k : tClaveJuegos; i : tInfoJuegos) is
 begin
    insertar(juegos, k, i);  -- ADT ABB
@@ -303,6 +314,10 @@ exception
       mostrar("No se pudo guardar el juego. Inténtelo más tarde");
 end guardarJuego;
 
+--QH:Elimina un juego si el usuario lo desea.
+--PRE: juegos = J, kJuego = K y K existe en J.
+--POS:	juegos = J1 y J1 es J sin el juego de clave K.
+--EXC: -
 procedure eliminarJuego(juegos : in out abbJuegos.tipoArbol; kJuego : tClaveJuegos) is
 begin
    if confirma("¿Desea eliminar el juego?") then        -- ÚTILES
@@ -313,6 +328,10 @@ begin
    end if;
 end eliminarJuego;
 
+--QH: Modifica los datos de un juego hasta que el usuario no desee seguir modificando.
+--PRE: iJuego = I y I contiene la información de un juego.
+--POS: iJuegos = I1 y I1 es I con los datos modificados.
+--EXC: -
 procedure modificarDatosJuegos(iJuego : in out tInfoJuegos) is
    mod : Integer;
 begin
@@ -330,6 +349,10 @@ begin
    end loop;
 end modificarDatosJuegos;
 
+--QH:Inicializa el arreglo del top 10
+--PRE: MAX = M y M > 0.  
+--POS: top = T y T[i].titulo=”” y T[i].vendidos=-1 para todo T[i]∈T.
+--EXC: -
 procedure inicializarTop10(top : out tTopVendidos; MAX : Integer) is
 begin
    for i in 1 .. MAX loop
@@ -338,6 +361,10 @@ begin
    end loop;
 end inicializarTop10;
 
+--QH: Busca y agrega los 10 juegos más vendidos al arreglo del top 10
+--PRE: juegos = J, top = T
+--POS:top = T1 y T1 es T con el top 10 juegos más vendidos del mes, dim = N y N es la dimensión lógica del arreglo.
+--EXC: -
 procedure buscarTop10(juego : abbJuegos.tipoArbol; top : in out tTopVendidos; dim : out Integer) is
    q : colaAuxJuegos;
    kJuego : tClaveJuegos;
@@ -364,6 +391,10 @@ exception
       mostrar("Se produjo un error al listar juegos. Inténtelo más tarde.");
 end buscarTop10;
 
+--QH: Muestra el top 10 de los juegos más vendidos
+--PRE: juegos=J,top = T y T[i].titulo existe en J para todo T[i]∈T, dim=D y D > 0
+--POS: -
+--EXC: -
 procedure mostrarTop10(juegos : abbJuegos.tipoArbol; top : tTopVendidos; dim : Integer) is
    iJuego : tInfoJuegos;
 begin
@@ -379,6 +410,10 @@ begin
    end loop;
 end mostrarTop10;
 
+--QH: Genera un listado de juegos filtrados por categoría recibida por parámetro.
+--PRE: juegos=J, cat=C, q=Q y Q está vacía.
+--POS: q=Q1 y Q1 está vacía.
+--EXC: -
 procedure crearListadoCat(juegos : abbJuegos.tipoArbol; cat : tCategorias; q : in out colaAuxJuegos) is
 begin
    inOrder(juegos, q);							-- ADT ABB
@@ -388,6 +423,10 @@ exception
       mostrar("Se ha producido un error al mostrar los juegos. Inténtelo más tarde.");
 end crearListadoCat;
 
+--QH: Pide al usuario el DNI de un cliente y retorna su información.
+--PRE: cliente=C
+--POS: k=K y K es el DNI del cliente, i=I y I es la información del cliente K.
+--EXC: -
 procedure PedirDatosCliente(cliente : abbClientes.tipoArbol; k : out tClaveCliente; i : out tInfoCliente) is
    Esta : Boolean := True;
 begin
@@ -404,6 +443,10 @@ begin
    end loop until Esta;
 end PedirDatosCliente;
 
+--QH: Pide al usuario el título de un juego y retorna su información.
+--PRE: juegos=J
+--POS: k=K y K es el título del juego, i=I y I es la información del juego K.
+--EXC: –
 procedure obtenerJuegoDisponible(juego : abbJuegos.tipoArbol; k : out tClaveJuegos; i : out tInfoJuegos) is
    Esta : Boolean := False;
 begin
@@ -426,6 +469,10 @@ begin
    end loop;
 end obtenerJuegoDisponible;
 
+--QH: se pide al usuario los datos de la compra y se actualizan los registros de compra. 
+--PRE: juegos = J, kJuego = KJ y KJ existe en J, clientes = C, kCliente = KC y KC existe en C.
+--POS: juegos=J1 y J1 es J con el stock y cantidad de vendidos del juego KJ actualizados, clientes=C1 y C1 es C con los registros de compras del cliente KC actualizados.
+--EXC: - 
 procedure realizarCompra(juegos : in out abbJuegos.tipoArbol; kJuego : tClaveJuegos; clientes : in out abbClientes.tipoArbol; kCliente : tClaveCliente) is
    iJuego   : tInfoJuegos;
    iCliente : tInfoCliente;
@@ -442,6 +489,10 @@ begin
    end if;
 end realizarCompra;
 
+--QH: Determina si existe un cliente en el árbol.
+--PRE: clientes=C y k=K
+--POS: existeCliente=verdadero si existe K en C, sino existeCliente=falso.
+--EXC: -
 function existeCliente(cliente : abbClientes.tipoArbol; k : tClaveCliente) return Boolean is
    i : tInfoCliente;
 begin
@@ -452,6 +503,10 @@ exception
       return False;
 end existeCliente;
 
+--QH: Carga todos los campos necesarios para inicializar un nuevo cliente.
+--PRE:-
+--POS: i=I y I tiene la información de un nuevo cliente.
+--EXC: -
 procedure cargarInfoCliente(i : out tInfoCliente) is
 begin
    cargarNombre(i.nombre, i.apellido);       -- NIVEL 4
@@ -465,6 +520,10 @@ begin
    iniUltimo(i.ultimaCompra);					-- NIVEL 4
 end cargarInfoCliente;
 
+--QH: Muestra en pantalla los datos del cliente.
+--PRE: cliente=C, k=K y K existe en C.
+--POS: -
+--EXC: -
 procedure mostrarCliente(k : tClaveCliente; cliente : abbClientes.tipoArbol) is
    i : tInfoCliente;
 begin
@@ -488,6 +547,10 @@ begin
    end if;
 end mostrarCliente;
 
+--QH: Permite modificar uno o más datos de un cliente mientras el usuario lo desee.
+--PRE: i=I y tiene cargado un cliente válido.
+--POS: i=I1 y I1 es I el cual actualiza los campos válidos.
+--EXC: –
 procedure modificarDatosCliente(i : in out tInfoCliente) is
    opcion : Integer;
 begin
@@ -503,6 +566,10 @@ begin
    end loop;
 end modificarDatosCliente;
 
+--QH:Inicializa el arreglo del top 10 compradores
+--PRE: MAX = M y M > 0.  
+--POS: top = T y T[i].dni=0 y T[i].totalGastado=-1 para todo T[i]∈T.
+--EXC: -
 procedure inicializarTop10Compradores(top : out tCompradores; MAX : Integer) is
 begin
    for i in 1 .. MAX loop
@@ -511,6 +578,10 @@ begin
    end loop;
 end inicializarTop10Compradores;
 
+--QH: Busca y agrega los 10 clientes más compradores del arreglo del top 10
+--PRE: clientes=C , top = T
+--POS: top = T1 y T1 es T con el top 10 clientes más compradores del mes, dim = N y N es la dimensión lógica del arreglo y N>=0.
+--EXC: -
 procedure buscarTop10Compradores(clientes : abbClientes.tipoArbol; top : in out tCompradores; dim : out Integer) is
    q : colaAuxCliente;
    dni : tClaveCliente;
@@ -537,6 +608,10 @@ exception
       mostrar("Error al listar clientes,intente nuevamente");
 end buscarTop10Compradores;
 
+--QH: Muestra el top 10 de los clientes más compradores.
+--PRE: clientes=C,top = T y T[i].dni existe en C para todo T[i]∈T, dim=D y D >= 0
+--POS: -
+--EXC: - 
 procedure mostrarTop10Compradores(clientes : abbClientes.tipoArbol; top : tCompradores; dim : Integer) is
    info : tInfoCliente;
 begin
@@ -550,6 +625,10 @@ begin
    end loop;
 end mostrarTop10Compradores;
 
+--QH: Actualiza el campo de créditos y total gastado de un cliente.
+--PRE: cliente=C,k=K y K existe en C, importe=I y n=N.
+--POS:cliente=C1 y C1 es C con los campos de créditos y total gastado de un cliente actualizado.
+--EXC: -
 procedure acreditacion(cliente : in out abbClientes.tipoArbol; k : tClaveCliente; importe : Float; n : Integer) is
    i : tInfoCliente;
 begin
