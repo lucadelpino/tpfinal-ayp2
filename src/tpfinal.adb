@@ -157,6 +157,408 @@ procedure tpfinal is
 
    type tCompradores is array (1..MAX) of tInfoCompradores;
 
+   ----------------------------------------------------------------------------NIVEL 5--------------------------------------------------------------------------------------------
+-- QH: Muestra las categorías de juegos y devuelve la categoría elegida por el usuario.
+-- PRE: -
+-- POS: categorias = N y N es el valor de la categoria seleccionada
+-- EXC: -
+function categorias return Integer is
+   opcion : Integer;
+begin
+   mostrar("CATEGORÍAS");
+   mostrar("1. Rol");
+   mostrar("2. Estrategia");
+   mostrar("3. Acción");
+   mostrar("4. Aventura");
+   mostrar("5. Arcade");
+   mostrar("6. Puzzle");
+   mostrar("7. Deporte");
+   mostrar("8. Supervivencia");
+   mostrar("9. Sandbox");
+   opcion := enteroEnRango("Seleccione una categoria", 1, 9); -- ÚTILES
+   return opcion;
+end categorias;
+
+-- QH: Muestra las opciones de edad sugerida y devuelve la opción elegida por el usuario.
+-- PRE: -
+-- POS: edad = D y D es el valor de la opción elegida por el usuario.
+-- EXC: -
+function edad return Integer is
+   opcion : Integer;
+begin
+   mostrar("Clasificación por nivel de violencia");
+   mostrar("1. ATP");
+   mostrar("2. +12");
+   mostrar("3. +15");
+   mostrar("4. +18");
+   opcion := enteroEnRango("Seleccione la edad sugerida:", 1, 4); -- ÚTILES
+   return opcion;
+end edad;
+
+-- QH: Muestra todos los datos de un juego
+-- PRE: k = K, i = I
+-- POS: -
+-- EXC: -
+procedure mostrarJuego(k : in tClaveJuego; i : in tInfoJuego) is
+begin
+   mostrar("Título: ", k);
+   mostrar("Desarrollador: ", i.desarollador);
+   mostrar("Descripción: ", i.descripcion);
+   mostrar("Categoría: ", i.categoria);
+   mostrar("Precio: ", i.precio);
+   mostrar("Juegos Vendidos: ", i.vendidos);
+   mostrar("Total alquilados: ", i.alquilados);
+   mostrar("Stock: ", i.stock);
+   mostrar("Edad sugerida: ", i.edad);
+end mostrarJuego;
+
+-- QH: Determina si la cantidad de créditos es suficiente para obtener un descuento en compras (mínimo 1000 créditos).
+-- PRE: creditos = C y C >= 0
+-- POS: creditosSuficientes = verdadero si creditos >= 1000, sino creditosSuficientes = falso.
+-- EXC: -
+function creditosSuficientes(creditos : Integer) return Boolean is
+begin
+   return creditos >= 1000;
+end creditosSuficientes;
+
+-- QH: Registra los datos de la compra en la lista de compras de un cliente.
+-- PRE: compras = C, kJuego = K, cant = CANT y precio = P
+-- POS: compras = C1 y C1 es C pero con la nueva compra guardada
+-- EXC: listaLlena, claveExiste
+procedure registroCompra(compras : in out listaCompras; kJuego : in tClaveJuegos; cant : in Integer; precio : in Float) is
+   compra : tInfoCompra;
+begin
+   compra.importe := precio;
+   compra.cantidad := cant;
+   compra.fecha := fechaHoy();
+   insertar(compras, kJuego, compra); -- ADT ABB
+end registroCompra;
+
+-- QH: Calcula la cantidad de créditos que corresponden según el total gastado.
+-- PRE: totalGastado >= 0
+-- POS: modificarCreditos = M y M es la cantidad de créditos que le corresponden al total gastado.
+-- EXC: --
+function modificarCreditos(totalGastado : Float) return Integer is
+   valorCred : constant Integer := 1000;
+   creditos : Integer := 0;
+   tempGastado : Float := totalGastado;
+begin
+   while tempGastado >= Float(valorCred) loop
+      tempGastado := tempGastado - Float(valorCred);
+      creditos := creditos + 1;
+   end loop;
+   return creditos;
+end modificarCreditos;
+
+-- QH: Asigna los datos de la última compra
+-- PRE: kJuego = K y precio = P y P > 0.
+-- POS: ultimaCompra = U y U contiene los datos de la última compra
+-- EXC: -
+procedure registrarUltimaCompra(ultimaCompra : in out tUltimo; kJuego : in tClaveJuegos; precio : in Float) is
+begin
+   ultimaCompra.titulo := kJuego;
+   ultimaCompra.fecha := fechaHoy();  -- FECHAS
+   ultimaCompra.importe := precio;
+   ultimaCompra.cantDias := 0;
+end registrarUltimaCompra;
+
+   ----------------------------------------------------------------------------NIVEL 4--------------------------------------------------------------------------------------------
+
+
+   ----------------------------------------------------------------------------NIVEL 3--------------------------------------------------------------------------------------------
+
+
+function existeJuego(a : abbJuegos.tipoArbol; kJuegos : tClaveJuegos) return Boolean is
+   iJuegos : tInfoJuegos;
+begin
+   buscar(a, kJuegos, iJuegos);   -- ADT ABB
+   return True;
+exception
+   when claveNoExiste =>
+      return False;
+end existeJuego;
+
+procedure ingresoDatosJuego(iJuego : out tInfoJuegos) is
+begin
+   iJuego.desarrollador := textoNoVacio("Ingrese el desarrollador");       -- ÚTILES
+   iJuego.descripcion   := textoNoVacio("Ingrese la reseña descriptiva");  -- ÚTILES
+   pedirCategoria(iJuego.categoria);                                       -- NIVEL 4
+   ingresoEdad(iJuego.edad);                                               -- NIVEL 4
+   iJuego.precio := cargarPrecio();                                        -- NIVEL 4
+
+   loop
+      iJuego.stock := numeroEnt("Ingrese la cantidad de stock");           -- ÚTILES
+      exit when iJuego.stock >= 0;
+   end loop;
+
+   iJuego.alquilados := 0;
+   iJuego.vendidos   := 0;
+end ingresoDatosJuego;
+
+procedure guardarJuego(juegos : in out abbJuegos.tipoArbol; k : tClaveJuegos; i : tInfoJuegos) is
+begin
+   insertar(juegos, k, i);  -- ADT ABB
+exception
+   when arbolLleno =>
+      mostrar("No se pudo guardar el juego. Inténtelo más tarde");
+end guardarJuego;
+
+procedure eliminarJuego(juegos : in out abbJuegos.tipoArbol; kJuego : tClaveJuegos) is
+begin
+   if confirma("¿Desea eliminar el juego?") then        -- ÚTILES
+      suprimir(juegos, kJuego);                          -- ADT ABB
+      mostrar("Juego eliminado");
+   else
+      mostrar("Eliminación cancelada");
+   end if;
+end eliminarJuego;
+
+procedure modificarDatosJuegos(iJuego : in out tInfoJuegos) is
+   mod : Integer;
+begin
+   loop
+      mod := menuModificarJuego();   -- NIVEL 4
+      case mod is
+         when 1 => iJuego.desarrollador := textoNoVacio("Desarrollador: ");      -- ÚTILES
+         when 2 => iJuego.descripcion   := textoNoVacio("Ingrese la reseña descriptiva");  -- ÚTILES
+         when 3 => pedirCategoria(iJuego.categoria);                              -- NIVEL 4
+         when 4 => ingresoEdad(iJuego.edad);                                      -- NIVEL 4
+         when 5 => iJuego.precio := cargarPrecio();                               -- NIVEL 4
+         when others => null;
+      end case;
+      exit when not confirma("¿Quiere modificar algo más?");
+   end loop;
+end modificarDatosJuegos;
+
+procedure inicializarTop10(top : out tTopVendidos; MAX : Integer) is
+begin
+   for i in 1 .. MAX loop
+      top(i).titulo  := "";
+      top(i).vendidos := -1;
+   end loop;
+end inicializarTop10;
+
+procedure buscarTop10(juego : abbJuegos.tipoArbol; top : in out tTopVendidos; dim : out Integer) is
+   q : colaAuxJuegos;
+   kJuego : tClaveJuegos;
+   iJuego : tInfoJuegos;
+begin
+   crear(q);										-- ADT COLA
+   preOrder(juego, q);								-- ADT ABB
+   dim := 0;
+   while not esVacia(q) loop							-- ADT COLA
+      frente(q, kJuego);								-- ADT COLA
+      desencolar(q);									-- ADT COLA
+      buscar(juego, kJuego, iJuego);					-- ADT ABB
+      if dim < 10 then
+         insertarJuego(top, dim, iJuego, kJuego);	-- NIVEL 4
+         dim := dim + 1;
+      else
+         if iJuego.vendidos > top(dim).vendidos then
+            insertarJuego(top, dim - 1, iJuego, kJuego);	-- NIVEL 4
+         end if;
+      end if;
+   end loop;
+exception
+   when errorEnCola =>
+      mostrar("Se produjo un error al listar juegos. Inténtelo más tarde.");
+end buscarTop10;
+
+procedure mostrarTop10(juegos : abbJuegos.tipoArbol; top : tTopVendidos; dim : Integer) is
+   iJuego : tInfoJuegos;
+begin
+   for i in 1 .. dim loop
+      buscar(juegos, top(i).titulo, iJuego);	
+      mostrar("Posición del top: ", i);
+      mostrar("Título: ", iJuego.titulo);
+      mostrar("Desarrollador: ", iJuego.desarrollador);
+      mostrar("Categoría: ", iJuego.categoria);
+      mostrar("Nivel de violencia: ", iJuego.edad);
+      mostrar("La cantidad de vendidos es: ", iJuego.vendidos);
+      continua("¿continua con el top?");
+   end loop;
+end mostrarTop10;
+
+procedure crearListadoCat(juegos : abbJuegos.tipoArbol; cat : tCategorias; q : in out colaAuxJuegos) is
+begin
+   inOrder(juegos, q);							-- ADT ABB
+   mostrarCategoria(cat, juegos, q);				-- NIVEL 4
+exception
+   when errorEnCola =>
+      mostrar("Se ha producido un error al mostrar los juegos. Inténtelo más tarde.");
+end crearListadoCat;
+
+procedure PedirDatosCliente(cliente : abbClientes.tipoArbol; k : out tClaveCliente; i : out tInfoCliente) is
+   Esta : Boolean := True;
+begin
+   loop
+      k := enteroEnRango("Ingrese el DNI del cliente", 10000000, 99999999);	-- ÚTILES
+      begin
+         buscar(cliente, k, i);							-- ADT ABB
+         exit;
+      exception
+         when claveNoExiste =>
+            Esta := False;
+            mostrar("El cliente no se encuentra registrado");
+      end;
+   end loop until Esta;
+end PedirDatosCliente;
+
+procedure obtenerJuegoDisponible(juego : abbJuegos.tipoArbol; k : out tClaveJuegos; i : out tInfoJuegos) is
+   Esta : Boolean := False;
+begin
+   loop
+      k := textoNoVacio("Ingrese el título del juego");	-- ÚTILES
+      begin
+         buscar(juego, k, i);							-- ADT ABB
+         Esta := True;
+         if i.stock = 0 then
+            mostrar("Juego no Disponible");
+         else
+            mostrar("Juego Disponible");
+         end if;
+      exception
+         when claveNoExiste =>
+            Esta := False;
+            mostrar("Juego no existe");
+      end;
+      exit when Esta;
+   end loop;
+end obtenerJuegoDisponible;
+
+procedure realizarCompra(juegos : in out abbJuegos.tipoArbol; kJuego : tClaveJuegos; clientes : in out abbClientes.tipoArbol; kCliente : tClaveCliente) is
+   iJuego   : tInfoJuegos;
+   iCliente : tInfoCliente;
+   cant     : Integer;
+   precioFinal : Float;
+begin
+   buscar(clientes, kCliente, iCliente);	-- ADT ABB
+   buscar(juegos, kJuego, iJuego);			-- ADT ABB
+   cant := enteroEnRango("Ingrese cuantos ejemplares desea comprar", 0, iJuego.stock);
+   if cant > 0 then
+      precioFinal := calculoImporte(iJuego.precio, cant, iCliente.creditos);	-- NIVEL 4
+      mostrar("El total a pagar es: $", precioFinal);
+      AnadirCompra(clientes, kCliente, juegos, kJuego, cant, precioFinal);	-- NIVEL 4
+   end if;
+end realizarCompra;
+
+function existeCliente(cliente : abbClientes.tipoArbol; k : tClaveCliente) return Boolean is
+   i : tInfoCliente;
+begin
+   buscar(cliente, k, i);				-- ADT ABB
+   return True;
+exception
+   when claveNoExiste =>
+      return False;
+end existeCliente;
+
+procedure cargarInfoCliente(i : out tInfoCliente) is
+begin
+   cargarNombre(i.nombre, i.apellido);       -- NIVEL 4
+   cargarFecha(i.fechaNacimiento);           -- NIVEL 4
+   cargarDireccion(i.direccion);             -- NIVEL 4
+   cargarListas(i.alquiler, i.compras);      -- NIVEL 4
+   i.sancionado := False;
+   iniDatosCero(i);							-- NIVEL 4
+   iniMedalla(i.medallas);					-- NIVEL 4
+   iniUltimo(i.ultimoAlquiler);				-- NIVEL 4
+   iniUltimo(i.ultimaCompra);					-- NIVEL 4
+end cargarInfoCliente;
+
+procedure mostrarCliente(k : tClaveCliente; cliente : abbClientes.tipoArbol) is
+   i : tInfoCliente;
+begin
+   buscar(cliente, k, i);					-- ADT ABB
+   mostrar(i.nombre, " ", i.apellido);
+   mostrar("DNI: ", k);
+   mostrar("Dirección: ", i.direccion);
+   mostrar("Deuda: ", i.cantDeuda);
+   mostrar("cantidad de juegos: ", i.cantJuegos);
+   mostrar("Creditos: ", i.creditos);
+   mostrar("Total gastado: ", i.importeTotal);
+   mostrar("Torneos participados: ", i.cantTorneos);
+   mostrarMedallas(i.medallas);				-- NIVEL 4
+   mostrarUltimaCompra(i.ultimaCompra);		-- NIVEL 4
+   mostrarUltimoAlquiler(i.ultimoAlquiler);	-- NIVEL 4
+   mostrar("nacimiento: ", fechaTexto(i.fechaNacimiento));	-- FECHAS
+   if i.sancionado then
+      mostrar("usuario sancionado");
+   else
+      mostrar("cliente ejemplar");
+   end if;
+end mostrarCliente;
+
+procedure modificarDatosCliente(i : in out tInfoCliente) is
+   opcion : Integer;
+begin
+   loop
+      opcion := opcionesCliente();			-- NIVEL 4
+      case opcion is
+         when 1 => cargarNombre(i.nombre, i.apellido);	-- NIVEL 4
+         when 2 => cargarFecha(i.fechaNacimiento);		-- NIVEL 4
+         when 3 => cargarDireccion(i.direccion);			-- NIVEL 4
+         when others => null;
+      end case;
+      exit when not confirma("¿Desea cambiar otro dato?");
+   end loop;
+end modificarDatosCliente;
+
+procedure inicializarTop10Compradores(top : out tCompradores; MAX : Integer) is
+begin
+   for i in 1 .. MAX loop
+      top(i).dni := 0;
+      top(i).totalGastado := -1;
+   end loop;
+end inicializarTop10Compradores;
+
+procedure buscarTop10Compradores(clientes : abbClientes.tipoArbol; top : in out tCompradores; dim : out Integer) is
+   q : colaAuxCliente;
+   dni : tClaveCliente;
+   info : tInfoCliente;
+begin
+   crear(q);					-- ADT COLA
+   preOrder(clientes, q);		-- ADT ABB
+   dim := 0;
+   while not esVacia(q) loop	-- ADT COLA
+      frente(q, dni);			-- ADT COLA
+      desencolar(q);			-- ADT COLA
+      buscar(clientes, dni, info);	-- ADT ABB
+      if dim < 10 then
+         insertarCliente(top, dim, dni, info.totalGastado);	-- NIVEL 4
+         dim := dim + 1;
+      else
+         if info.totalGastado > top(dim).totalGastado then
+            insertarCliente(top, dim - 1, dni, info.totalGastado);	-- NIVEL 4
+         end if;
+      end if;
+   end loop;
+exception
+   when errorEnCola =>
+      mostrar("Error al listar clientes,intente nuevamente");
+end buscarTop10Compradores;
+
+procedure mostrarTop10Compradores(clientes : abbClientes.tipoArbol; top : tCompradores; dim : Integer) is
+   info : tInfoCliente;
+begin
+   for i in 1 .. dim loop
+      buscar(clientes, top(i).dni, info);	-- ADT ABB
+      mostrar("Posición ", i);
+      mostrar("DNI: ", top(i).dni);
+      mostrar("Nombre: ", info.nombre, " ", info.apellido);
+      mostrar("Juegos comprados: ", info.juegos);
+      mostrar("Total gastado $: ", top(i).totalGastado);
+   end loop;
+end mostrarTop10Compradores;
+
+procedure acreditacion(cliente : in out abbClientes.tipoArbol; k : tClaveCliente; importe : Float; n : Integer) is
+   i : tInfoCliente;
+begin
+   buscar(cliente, k, i);				-- ADT ABB
+   i.totalGastado := i.totalGastado + importe;
+   i.creditos := i.creditos + n;
+   modificar(cliente, k, i);				-- ADT ABB
+end acreditacion;
+
    ----------------------------------------------------------------------------NIVEL 2--------------------------------------------------------------------------------------------
 --*QH: Muestra las opciones del menú de juegos y devuelve la opción elegida por el usuario.
 --PRE: -
