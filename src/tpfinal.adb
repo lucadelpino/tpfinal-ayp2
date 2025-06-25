@@ -218,13 +218,15 @@ procedure tpfinal is
    --EXC: -
    procedure mostrarJuego (kJuego: in tClaveJuego; i: in tInfoJuego) is
    begin
-      Put_Line ("Título: " & kJuego);
+      Put_Line ("Titulo: " & kJuego);
       Put_Line ("Desarrollador: " & i.desarrollador);
-      Put_Line ("Descripción: " & i.descripcion);
-      Put ("Categoría: ");
+      Put_Line ("Descripcion: " & i.descripcion);
+      Put ("Categoria: ");
       ioCategoria.Put (i.Categoria);
       New_Line;
-      Put_Line ("Precio: $" & float'Image(i.precio));
+      Put("precio: ");
+      put(i.precio,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
       Put_Line ("Juegos Vendidos:" & integer'Image(i.vendidos));
       Put_Line ("Total alquilados:" & integer'Image(i.alquilados));
       Put_Line ("Stock:" & integer'Image(i.stock));
@@ -517,7 +519,9 @@ procedure tpfinal is
       Put_Line ("Medallas de oro:" & integer'Image(m.oro));
       Put_Line ("Medallas de plata:" & integer'Image(m.plata));
       Put_Line ("Medallas de bronce:" & integer'Image(m.bronce));
-      Put_Line ("Total de dinero ganado:" & float'Image( m.premioGanado));
+      Put("total de dinero ganado: ");
+      put(m.premioGanado,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
    end mostrarMedallas;
 
    --QH: Muestra los datos de la última compra de un cliente.
@@ -528,7 +532,9 @@ procedure tpfinal is
    begin
       Put_Line ("Su ultimo juego comprado es: " & u.titulo);
       Put_Line ("Lo adquirio el dia: " & fechaTexto(u.fecha));
-      Put_Line ("Le costo: $" & float'Image(u.importe));
+      Put("le costo: $");
+      put(u.importe,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
    end mostrarUltimaCompra;
 
    --QH: Muestra los datos del último alquiler de un cliente.
@@ -540,7 +546,9 @@ procedure tpfinal is
       Put_Line ("Ultimo alquiler: " & u.titulo);
       Put_Line ("Alquilado el dia " & fechaTexto(u.fecha));
       Put_Line ("Por" & integer'Image(u.cantDias) & " dias");
-      Put_Line ("Total de alquiler: $" & float'Image(u.importe));
+      Put("total de alquiler: $");
+      put(u.importe,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
    end mostrarUltimoAlquiler;
 
    --QH: Muestra las opciones de campos modificables de un cliente y devuelve la opción seleccionada.
@@ -789,7 +797,9 @@ procedure tpfinal is
       cant := enteroEnRango("Ingrese cuantos ejemplares desea comprar", 0, iJuego.stock);
       if cant > 0 then
          precioFinal := calculoImporte(iJuego.precio, cant, iCliente.creditos);            --NIVEL 4
-         Put_Line ("El total a pagar es: $" & float'image( precioFinal));
+         Put("El total a pagar es: $");
+         put(precioFinal,Fore => 10, Aft => 2,Exp =>0);
+         New_Line;
          AnadirCompra(clientes, kCliente, juegos, kJuego, cant, precioFinal);            -- NIVEL 4
       end if;
    end realizarCompra;
@@ -846,11 +856,17 @@ procedure tpfinal is
       Put_Line (i.nombre & " " & i.apellido);
       Put_Line ("DNI:" & integer'Image(k));
       Put_Line ("Direccion: " & i.direccion);
-      Put_Line ("Deuda:" & float'Image(i.cantDeuda));
-      Put_Line ("Cantidad de juegos:" & integer'Image(i.cantJuegos));
-      Put_Line ("Creditos:" & integer'Image(i.creditos));
-      Put_Line ("Total gastado:" & float'Image(i.importeTotal));
-      Put_Line ("Torneos participados:" & integer'Image(i.cantTorneos));
+      Put("Deuda: ");
+      put(i.cantDeuda,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
+      Put_Line ("Cantidad de juegos: " & integer'Image(i.cantJuegos));
+      New_Line;
+      Put_Line ("Creditos: " & integer'Image(i.creditos));
+      New_Line;
+      Put("Total gastado: ");
+      put(i.importeTotal,Fore => 10, Aft => 2,Exp =>0);
+      New_Line;
+      --Put_Line ("Torneos participados:" & integer'Image(i.cantTorneos));
       mostrarMedallas(i.medallas);		                       --NIVEL 4
       mostrarUltimaCompra(i.ultimaCompra)	;	                --NIVEL 4
       mostrarUltimoAlquiler(i.ultimoAlquiler);				   --NIVEL 4
@@ -935,7 +951,9 @@ procedure tpfinal is
          Put_Line ("DNI:" & integer'Image(top(i).dni));
          Put_Line ("Nombre: " & info.nombre & " " & info.apellido);
          Put_Line ("Juegos comprados:" & integer'Image(info.cantJuegos));
-         Put_Line ("Total gastado $:" & float'Image(top(i).totalGastado));
+         Put("El total a gastado es: $");
+         put(top(i).totalGastado,Fore => 10, Aft => 2,Exp =>0);
+         New_Line;
       end loop;
    end mostrarTop10Compradores;
 
@@ -1291,18 +1309,20 @@ procedure tpfinal is
       loop
          k := enteroEnRango ("Ingrese el DNI de cliente", 10000000, 99999999);                     --ÚTILES
          if existeCliente(clientes,k) then                                                         --NIVEL 3
-            n := enteroEnRango ("Ingrese la cantidad de créditos que desea comprar",1,9999999);    --ÚTILES
+            n := enteroEnRango ("Ingrese la cantidad de creditos que desea comprar",1,9999999);    --ÚTILES
             importe := Float(n * valor) * recargo;
-            Put_Line ("importe total de: " & float'Image(importe));
+            Put("importe total de: $");
+            put(importe,Fore => 10, Aft => 2,Exp =>0);
+            New_Line;
             if confirma("desea acreditarlos?") then                                                --ÚTILES
                acreditacion(clientes,k,importe,n);                                                 --NIVEL 3
             else
-               Put_Line("acreditación cancelada");
+               Put_Line("acreditacion cancelada");
             end if;
          else
             Put_Line("Cliente no registrado");
          end if;
-         exit when not confirma("desea cargar más créditos?");                                     --ÚTILES
+         exit when not confirma("desea cargar mass créditos?");                                     --ÚTILES
       end loop;
    end CompraCredito;
 
