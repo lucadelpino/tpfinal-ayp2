@@ -362,9 +362,13 @@ procedure tpfinal is
       i: integer;
    begin
       i := dim;
-      while (i >= 1) and (iJuego.vendidos > top(i).vendidos) loop
-         top(i+1) := top(i);
-         i := i - 1;
+      while i >= 1 loop
+         if iJuego.vendidos > top(i).vendidos then
+            top(i + 1) := top(i);
+            i := i - 1;
+         else
+            exit;
+         end if;
       end loop;
       top(i+1).titulo := kJuego;
       top(i+1).vendidos := iJuego.vendidos;
@@ -572,9 +576,11 @@ procedure tpfinal is
       i: integer;
    begin
       i:= dim;
-      while (i >= 1) and (totalGastado > top(i).totalGastado) loop
-         top(i+1) := top(i);
-         i := i-1;
+      while (i >= 1) loop
+         if (totalGastado > top(i).totalGastado) then
+            top(i+1) := top(i);
+            i := i-1;
+         end if;
 	   end loop;
       top(i+1).dni := dni;
       top(i+1).totalGastado := totalGastado;
